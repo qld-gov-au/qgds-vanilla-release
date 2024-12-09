@@ -1,6 +1,6 @@
 {
   "name": "@qld-gov-au/qgds-vanilla",
-  "version": "1.0.0",
+  "version": "0.0.21",
   "description": "",
   "main": "index.js",
   "licence": "MIT",
@@ -9,7 +9,8 @@
     "url": "https://github.com/qld-gov-au/qgds-vanilla"
   },
   "scripts": {
-    "prepare": "npm run build",
+    "config": "node .esbuild/helpers/config.js",
+    "prepare": "npm run config && npm run build",
     "build": "node esbuild.js",
     "watch": "node esbuild.js --watch",
     "serve": "node esbuild.js --serve",
@@ -18,7 +19,10 @@
     "test:integration": "echo 'no test:integration exist'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build --webpack-stats-json ",
-    "package-docs": "npm run build-storybook && rm -rf docs/storybook && mv storybook-static docs/storybook"
+    "package-docs": "npm run build-storybook && rm -rf docs/storybook && mv storybook-static docs/storybook",
+    "lint:js": "eslint \"./src/**/*.js\"",
+    "lint:styles": "stylelint \"./src/**/*.css\" \"./src/**/*.scss\" \"!./src/**/*.min.css\" \"!./src/**/custom.css\"",
+    "lint": "npm run lint:js && npm run lint:styles"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +30,7 @@
   "type": "module",
   "devDependencies": {
     "@chromatic-com/storybook": "^3.1.0",
-    "@qld-gov-au/qgds-tokens": "^1.2.1",
+    "@qld-gov-au/qgds-tokens": "^3.0.2",
     "@storybook/addon-a11y": "^8.3.6",
     "@storybook/addon-designs": "^8.0.3",
     "@storybook/addon-essentials": "^8.3.6",

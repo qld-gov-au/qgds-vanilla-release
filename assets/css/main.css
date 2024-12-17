@@ -3700,9 +3700,11 @@ form .qld__body--breadcrumb {
 }
 .qld__body code,
 .qld__footer code {
-  background-color: var(--QLD-color-dark__background--alt-shade);
-  color: var(--QLD-color-dark__text);
   display: block;
+  white-space: pre-wrap;
+  padding: 2px 8px;
+  padding: 0.125rem 0.5rem;
+  margin: 0;
   font-family:
     "Roboto Mono",
     Consolas,
@@ -3710,12 +3712,19 @@ form .qld__body--breadcrumb {
     Menlo,
     Courier,
     monospace;
-  white-space: pre-wrap;
-  font-size: 14px;
-  font-size: 0.875rem;
-  padding: 2px 8px;
-  padding: 0.125rem 0.5rem;
-  margin: 0;
+  font-size: 12.8px;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: #232323;
+  color: #ffffff;
+}
+@media (min-width: 992px) {
+  .qld__body code,
+  .qld__footer code {
+    font-size: 12.8px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__body code .token,
 .qld__footer code .token {
@@ -3723,19 +3732,19 @@ form .qld__body--breadcrumb {
 }
 .qld__body code .token.comment,
 .qld__footer code .token.comment {
-  color: #B3CBDE;
+  color: #c0d7ec;
 }
 .qld__body code .token.tag,
 .qld__footer code .token.tag {
-  color: #A7E5FF;
+  color: #a7e5ff;
 }
 .qld__body code .token.attr-name,
 .qld__footer code .token.attr-name {
-  color: #C78DF7;
+  color: #710074;
 }
 .qld__body code .token.attr-value,
 .qld__footer code .token.attr-value {
-  color: #6BBE26;
+  color: #6bbe27;
 }
 .qld__body pre,
 .qld__footer pre {
@@ -20465,8 +20474,9 @@ div.sq-form-question-error select:not(:focus) {
 .qld__banner h1,
 .qld__main-nav h1 {
   font-size: 33.1776px;
-  font-size: 2.0736rem;
-  line-height: 1.205632716;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.25;
 }
 @media (min-width: 992px) {
   .qld__header h1,
@@ -20477,8 +20487,9 @@ div.sq-form-question-error select:not(:focus) {
   .qld__banner h1,
   .qld__main-nav h1 {
     font-size: 39.8131px;
-    font-size: 2.48831875rem;
-    line-height: 1.2056333217;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.25;
   }
 }
 .qld__header h2,
@@ -20488,10 +20499,10 @@ div.sq-form-question-error select:not(:focus) {
 .qld__card h2,
 .qld__banner h2,
 .qld__main-nav h2 {
-  font-size: 28px;
-  font-size: 1.75rem;
-  line-height: 36px;
-  line-height: 2.25rem;
+  font-size: 27.648px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.25;
 }
 @media (min-width: 992px) {
   .qld__header h2,
@@ -20502,8 +20513,9 @@ div.sq-form-question-error select:not(:focus) {
   .qld__banner h2,
   .qld__main-nav h2 {
     font-size: 33.1776px;
-    font-size: 2.0736rem;
-    line-height: 1.205632716;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.25;
   }
 }
 .qld__header h3,
@@ -20514,8 +20526,23 @@ div.sq-form-question-error select:not(:focus) {
 .qld__banner h3,
 .qld__main-nav h3 {
   font-size: 23.04px;
-  font-size: 1.44rem;
-  line-height: 1.2152777778;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.25;
+}
+@media (min-width: 992px) {
+  .qld__header h3,
+  .qld__header__main h3,
+  .qld__body h3,
+  .qld__footer h3,
+  .qld__card h3,
+  .qld__banner h3,
+  .qld__main-nav h3 {
+    font-size: 27.648px;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.25;
+  }
 }
 .qld__header h4,
 .qld__header__main h4,
@@ -20525,8 +20552,23 @@ div.sq-form-question-error select:not(:focus) {
 .qld__banner h4,
 .qld__main-nav h4 {
   font-size: 19.2px;
-  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.05em;
   line-height: 1.25;
+}
+@media (min-width: 992px) {
+  .qld__header h4,
+  .qld__header__main h4,
+  .qld__body h4,
+  .qld__footer h4,
+  .qld__card h4,
+  .qld__banner h4,
+  .qld__main-nav h4 {
+    font-size: 23.04px;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.25;
+  }
 }
 .qld__header h5,
 .qld__header__main h5,
@@ -20536,8 +20578,23 @@ div.sq-form-question-error select:not(:focus) {
 .qld__banner h5,
 .qld__main-nav h5 {
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.05em;
   line-height: 1.25;
+}
+@media (min-width: 992px) {
+  .qld__header h5,
+  .qld__header__main h5,
+  .qld__body h5,
+  .qld__footer h5,
+  .qld__card h5,
+  .qld__banner h5,
+  .qld__main-nav h5 {
+    font-size: 19.2px;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.25;
+  }
 }
 .qld__header h6,
 .qld__header__main h6,
@@ -20546,9 +20603,24 @@ div.sq-form-question-error select:not(:focus) {
 .qld__card h6,
 .qld__banner h6,
 .qld__main-nav h6 {
-  font-size: 12.8px;
-  font-size: 0.8rem;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
   line-height: 1.25;
+}
+@media (min-width: 992px) {
+  .qld__header h6,
+  .qld__header__main h6,
+  .qld__body h6,
+  .qld__footer h6,
+  .qld__card h6,
+  .qld__banner h6,
+  .qld__main-nav h6 {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.25;
+  }
 }
 .qld__header .qld__display-xxxl,
 .qld__header__main .qld__display-xxxl,

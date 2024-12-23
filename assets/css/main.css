@@ -3671,7 +3671,7 @@ form .qld__body--breadcrumb {
 .qld__footer sup {
   position: relative;
   vertical-align: baseline;
-  font-size: 10.24px;
+  font-size: 12.8px;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -3680,7 +3680,7 @@ form .qld__body--breadcrumb {
   .qld__body sup,
   .qld__footer sub,
   .qld__footer sup {
-    font-size: 10.24px;
+    font-size: 12.8px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -3697,7 +3697,7 @@ form .qld__body--breadcrumb {
 .qld__body samp,
 .qld__footer kbd,
 .qld__footer samp {
-  font-size: 10.24px;
+  font-size: 12.8px;
   font-weight: 400;
   line-height: 1.5;
   line-height: 20px;
@@ -3723,7 +3723,7 @@ form .qld__body--breadcrumb {
   .qld__body samp,
   .qld__footer kbd,
   .qld__footer samp {
-    font-size: 10.24px;
+    font-size: 12.8px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -3872,7 +3872,7 @@ form .qld__body--breadcrumb {
 }
 .qld__body .qld__caption,
 .qld__footer .qld__caption {
-  font-size: 10.24px;
+  font-size: 12.8px;
   font-weight: 400;
   line-height: 1.5;
   font-weight: 400;
@@ -3881,7 +3881,7 @@ form .qld__body--breadcrumb {
 @media (min-width: 992px) {
   .qld__body .qld__caption,
   .qld__footer .qld__caption {
-    font-size: 10.24px;
+    font-size: 12.8px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -14943,10 +14943,16 @@ legend.sq-form-section-title {
   padding-top: 32px;
   padding-top: 2rem;
   font-size: 23.04px;
-  font-size: 1.44rem;
-  line-height: 1.2152777778;
-  font-weight: bold;
+  font-weight: 600;
+  line-height: 1.25;
   color: var(--QLD-color-light__heading);
+}
+@media (min-width: 992px) {
+  legend.sq-form-section-title {
+    font-size: 27.648px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
 }
 legend.sq-form-section-title + * {
   margin-top: 20px;
@@ -15041,8 +15047,16 @@ label + textarea {
   color: var(--QLD-color-light__text--lighter);
   display: block;
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
+}
+@media (min-width: 992px) {
+  .qld__hint-text,
+  .sq-form-question-note {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 * + .qld__hint-text,
 * + .sq-form-question-note {
@@ -15234,12 +15248,19 @@ span.qld__input--error p.sq-form-error {
     "Apple Color Emoji",
     "Segoe UI Emoji",
     "Segoe UI Symbol";
-  font-weight: bold;
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
   color: #e22339;
   display: block;
+}
+@media (min-width: 992px) {
+  p.qld__input--error,
+  span.qld__input--error p.sq-form-error {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 * + p.qld__input--error,
 * + span.qld__input--error p.sq-form-error {
@@ -20815,7 +20836,7 @@ div.sq-form-question-error select:not(:focus) {
 .qld__card .qld__display-xs,
 .qld__banner .qld__display-xs,
 .qld__main-nav .qld__display-xs {
-  font-size: 12.8px;
+  font-size: 16px;
 }
 @media (min-width: 992px) {
   .qld__header .qld__display-xs,
@@ -20825,7 +20846,7 @@ div.sq-form-question-error select:not(:focus) {
   .qld__card .qld__display-xs,
   .qld__banner .qld__display-xs,
   .qld__main-nav .qld__display-xs {
-    font-size: 12.8px;
+    font-size: 16px;
   }
 }
 .qld__header *:not([type=hidden]) + .qld__display-xxxl,
@@ -21438,10 +21459,16 @@ i.qld__icon--trail {
   list-style-type: none;
   padding: 0;
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
-  font-weight: bold;
   overflow: hidden;
+}
+@media (min-width: 992px) {
+  .qld__link-columns {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 * + .qld__link-columns {
   margin: 24px 0;
@@ -21527,13 +21554,19 @@ i.qld__icon--trail {
 .qld__link-columns > li.qld__link-columns__all-link {
   font-size: 16px;
   font-size: 1rem;
-  line-height: 1.5;
   font-size: 16px;
-  font-size: 1rem;
-  font-weight: bold;
+  font-weight: 400;
+  line-height: 1.5;
   justify-content: flex-end;
   box-shadow: inset 0 -1px 0 transparent;
   flex: 0 0 100% !important;
+}
+@media (min-width: 992px) {
+  .qld__link-columns > li.qld__link-columns__all-link {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__link-columns > li.qld__link-columns__all-link::after {
   display: none;
@@ -21801,13 +21834,20 @@ i.qld__icon--trail {
 }
 .qld__link-list {
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
   display: block;
   list-style-type: none;
   margin: 0;
   padding: 4px 0;
   padding: 0.25rem 0;
+}
+@media (min-width: 992px) {
+  .qld__link-list {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__body .qld__link-list {
   margin: 0;
@@ -25375,11 +25415,9 @@ table {
 .qld__table caption,
 table .qld__table__caption,
 table caption {
-  font-size: 19.2px;
-  font-size: 1.2rem;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 1.25;
-  line-height: 1.6;
-  font-weight: bold;
   text-align: left;
   display: table-caption;
   padding: 12px;
@@ -25387,6 +25425,16 @@ table caption {
   color: var(--QLD-color-light__heading);
   box-shadow: inset 0 -1px 0 #f5f5f5;
   background-color: var(--QLD-color-light__background);
+}
+@media (min-width: 992px) {
+  .qld__table .qld__table__caption,
+  .qld__table caption,
+  table .qld__table__caption,
+  table caption {
+    font-size: 19.2px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
 }
 .qld__table .qld__table__caption .qld__caption,
 .qld__table caption .qld__caption,
@@ -25414,11 +25462,19 @@ table th {
   padding: 1.25rem 0.75rem 1.25rem 0.75rem;
   box-shadow: inset 0 -2px 0 var(--QLD-color-light__design-accent);
   color: var(--QLD-color-light__heading);
-  font-weight: bold;
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.25;
-  line-height: 1.5;
+}
+@media (min-width: 992px) {
+  .qld__table .qld__table__header,
+  .qld__table th,
+  table .qld__table__header,
+  table th {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
 }
 .qld__table .qld__table__header.qld__table__cell--numeric,
 .qld__table th.qld__table__cell--numeric,
@@ -25942,9 +25998,8 @@ table.qld__table--striped tbody tr:nth-last-child(odd) {
 .qld__tag {
   display: inline-block;
   font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 1.5625;
-  line-height: 20px;
+  font-weight: 400;
+  line-height: 1.5;
   padding: 0 8px;
   padding: 0 0.5rem;
   font-size: 14px;
@@ -25957,6 +26012,13 @@ table.qld__table--striped tbody tr:nth-last-child(odd) {
   margin: 0;
   text-align: center;
   text-decoration: none;
+}
+@media (min-width: 992px) {
+  .qld__tag {
+    font-size: 12.8px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__tag:focus {
   outline: 3px solid var(--QLD-color-light__focus);
@@ -26007,13 +26069,20 @@ table.qld__table--striped tbody tr:nth-last-child(odd) {
 }
 .qld__tag.qld__tag--large {
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
   font-size: 16px;
   font-size: 1rem;
   padding: 8px 16px;
   padding: 0.5rem 1rem;
   border-radius: 32px;
+}
+@media (min-width: 992px) {
+  .qld__tag.qld__tag--large {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 a.qld__tag,
 .qld__tag.qld__tag--link {
@@ -26172,7 +26241,7 @@ a.qld__tag:hover,
   border-color: #f5f5f5;
   background-color: transparent;
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
   font-size: 16px;
   font-size: 1rem;
@@ -26186,6 +26255,14 @@ a.qld__tag:hover,
   text-decoration-color: var(--QLD-color-light__underline);
   text-underline-offset: var(--QLD-underline__offset);
   text-decoration-skip-ink: auto;
+}
+@media (min-width: 992px) {
+  .qld__tag.qld__tag--filter,
+  .qld__card__footer .qld__tag.qld__tag--filter {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__tag.qld__tag--filter:hover,
 .qld__tag.qld__tag--filter:focus,
@@ -26673,16 +26750,17 @@ a.qld__tag:hover,
 p.qld__abstract {
   font-size: 20px;
   font-size: 1.25rem;
-  line-height: 1.5;
   max-width: 46rem;
+  font-size: 19.2px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 @media (min-width: 992px) {
   .qld__abstract,
   .qld__abstract > p,
   p.qld__abstract {
     font-size: 23.04px;
-    font-size: 1.44rem;
-    line-height: 1.3888888889;
+    font-weight: 400;
     line-height: 1.5;
   }
 }
@@ -26796,8 +26874,9 @@ form p.qld__abstract {
   text-decoration-color: var(--QLD-color-light__underline);
   text-underline-offset: var(--QLD-underline__offset);
   text-decoration-skip-ink: auto;
-  font-size: 19.2px;
-  font-size: 1.2rem;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
   line-height: 1.25;
   padding: 16px 48px 16px 16px;
   padding: 1rem 3rem 1rem 1rem;
@@ -26831,6 +26910,15 @@ form p.qld__abstract {
 .qld__accordion__title[disabled] {
   text-decoration: none;
   -webkit-text-decoration: none;
+}
+@media (min-width: 992px) {
+  .qld__accordion__title {
+    font-size: 19.2px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.25;
+    font-weight: normal;
+  }
 }
 .qld__accordion__title:focus {
   outline: 3px solid var(--QLD-color-light__focus);
@@ -28049,8 +28137,8 @@ li + li .qld__accordion {
   display: inline-block;
   margin-top: 4px;
   font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 0.9375;
+  font-weight: 400;
+  line-height: 1.5;
   letter-spacing: -0.5px;
 }
 .qld__tile-nav .qld__tile-nav__item .qld__tile-nav__link:hover,
@@ -28074,6 +28162,13 @@ li + li .qld__accordion {
 .qld__tile-nav .qld__tile-nav__item .qld__tile-nav__link[disabled] {
   text-decoration: none;
   -webkit-text-decoration: none;
+}
+@media (min-width: 992px) {
+  .qld__tile-nav .qld__tile-nav__item .qld__tile-nav__link {
+    font-size: 12.8px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__tile-nav .qld__tile-nav__item .qld__tile-nav__link:after {
   content: "";
@@ -28261,7 +28356,7 @@ li + li .qld__accordion {
   justify-content: end;
   align-items: center;
   margin-left: auto;
-  font-size: 12.8px;
+  font-size: 16px;
 }
 @media (min-width: 699px) {
   .qld__search__sort {
@@ -28528,15 +28623,15 @@ body {
 .qld__breadcrumbs > .qld__link-list {
   margin: 0;
   padding: 0;
-  font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 0.9375;
   vertical-align: text-bottom;
+  font-size: 12.8px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 @media (min-width: 992px) {
   .qld__breadcrumbs > .qld__link-list {
     font-size: 16px;
-    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.5;
   }
 }
@@ -28873,15 +28968,32 @@ body {
 }
 .qld__callout--calendar-event .qld__callout--calendar-event__lede {
   font-size: 16px;
-  font-size: 1rem;
-  line-height: 1;
+  font-weight: 400;
+  line-height: 1.5;
   margin: 0;
+}
+@media (min-width: 992px) {
+  .qld__callout--calendar-event .qld__callout--calendar-event__lede {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__callout--calendar-event .qld__callout--calendar-event__time,
 .qld__callout--calendar-event .qld__callout--calendar-event__name {
-  font-size: 33.1776px;
-  font-size: 2.0736rem;
-  line-height: 1.205632716;
+  font-size: 27.648px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+@media (min-width: 992px) {
+  .qld__callout--calendar-event .qld__callout--calendar-event__time,
+  .qld__callout--calendar-event .qld__callout--calendar-event__name {
+    font-size: 33.1776px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
 }
 .qld__callout--calendar-event .qld__callout--calendar-event__time {
   font-weight: bold;
@@ -29351,16 +29463,16 @@ body {
   margin: 0rem;
 }
 .qld__card .qld__card__inner .qld__card__description {
-  font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 1.5625;
   margin-top: 12px;
   margin-top: 0.75rem;
+  font-size: 12.8px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 @media (min-width: 699px) {
   .qld__card .qld__card__inner .qld__card__description {
     font-size: 16px;
-    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.5;
   }
 }
@@ -29479,14 +29591,14 @@ body {
   flex: 1 0 auto;
   position: relative;
   font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 1.5625;
+  font-weight: 400;
+  line-height: 1.5;
   justify-content: end;
 }
 @media (min-width: 699px) {
   .qld__card .qld__card__footer {
     font-size: 16px;
-    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.5;
   }
 }
@@ -31007,9 +31119,9 @@ table.dataTable.no-footer {
   color: var(--QLD-color-light__underline--hover);
   padding: 1.25rem 0.75rem 1.25rem 0.75rem;
   box-shadow: inset 0 -2px 0 var(--QLD-color-light__border--alt);
-  font-weight: bold;
-  font-size: 19.2px;
-  font-size: 1.2rem;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
   line-height: 1.25;
 }
 .qld__data-table .qld__data-table__head tr th:hover,
@@ -31022,6 +31134,15 @@ table.dataTable.no-footer {
 .qld__data-table .qld__data-table__head tr th:active,
 .qld__data-table thead tr th:active {
   box-shadow: inset 0 -2px 0 var(--QLD-color-light__design-accent);
+}
+@media (min-width: 992px) {
+  .qld__data-table .qld__data-table__head tr th,
+  .qld__data-table thead tr th {
+    font-size: 19.2px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
 }
 .qld__data-table .qld__data-table__head tr th.qld__data-table__cell--numeric,
 .qld__data-table thead tr th.qld__data-table__cell--numeric {
@@ -32283,13 +32404,20 @@ table.dataTable.no-footer {
 }
 .qld__footer {
   font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 1.5625;
+  font-weight: 400;
+  line-height: 1.5;
   padding-bottom: 40px;
   padding-bottom: 2.5rem;
   border-top: 4px solid var(--QLD-color-light__design-accent);
   background-color: #f5f5f5;
   color: var(--QLD-color-light__text);
+}
+@media (min-width: 992px) {
+  .qld__footer {
+    font-size: 12.8px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 @media (min-width: 992px) {
   .qld__footer {
@@ -32348,14 +32476,13 @@ table.dataTable.no-footer {
 .qld__footer .qld__footer__heading {
   color: var(--QLD-color-light__heading);
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.25;
-  font-weight: 700;
 }
 @media (min-width: 699px) {
   .qld__footer .qld__footer__heading {
     font-size: 19.2px;
-    font-size: 1.2rem;
+    font-weight: 600;
     line-height: 1.25;
   }
 }

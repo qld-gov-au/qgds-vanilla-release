@@ -33299,17 +33299,17 @@ table.dataTable.no-footer {
   }
 }
 .qld__header {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.5;
   color: var(--QLD-color-light__text);
   background: var(--QLD-color-light__background);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 1.25;
 }
 @media (min-width: 400px) {
   .qld__header {
     font-size: 19.2px;
-    font-size: 1.2rem;
-    line-height: 1.4583333333;
+    letter-spacing: 0;
+    line-height: 1.25;
   }
 }
 .qld__header .qld__skip-link {
@@ -33427,7 +33427,7 @@ table.dataTable.no-footer {
   .qld__header .qld__header__pre-header-url {
     display: inline-block;
     font-size: 16px;
-    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.5;
   }
 }
@@ -33459,12 +33459,19 @@ table.dataTable.no-footer {
 }
 .qld__header .qld__header__pre-header .qld__header__cta-wrapper .qld__header__cta-link {
   font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 1.5625;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--QLD-color-light__link);
   padding-left: 12px;
   padding-left: 0.75rem;
   align-items: center;
+}
+@media (min-width: 992px) {
+  .qld__header .qld__header__pre-header .qld__header__cta-wrapper .qld__header__cta-link {
+    font-size: 12.8px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__header .qld__header__pre-header .qld__header__cta-wrapper .qld__header__cta-link:hover .qld__header__cta-link-icon {
   color: var(--QLD-color-light__action--secondary-hover);
@@ -33516,8 +33523,8 @@ table.dataTable.no-footer {
   padding: 8px 16px;
   padding: 0.5rem 1rem;
   font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 0.9375;
+  font-weight: 400;
+  line-height: 1.5;
   border: 0;
   appearance: none;
   background-color: transparent;
@@ -33554,18 +33561,25 @@ table.dataTable.no-footer {
 @media (min-width: 699px) {
   .qld__header .qld__header__pre-header .qld__header__toggle-main-nav .qld__main-nav__toggle-text {
     font-size: 12.8px;
-    font-size: 0.8rem;
-    line-height: 0.9375;
+    font-weight: 400;
+    line-height: 1.5;
   }
 }
 .qld__header .qld__header__pre-header .qld__header__toggle-main-nav:before {
   font-size: 16px;
-  font-size: 1rem;
-  line-height: 1;
+  font-weight: 400;
+  line-height: 1.5;
   margin-bottom: 4px;
   margin-bottom: 0.25rem;
   display: block;
   text-align: center;
+}
+@media (min-width: 992px) {
+  .qld__header .qld__header__pre-header .qld__header__toggle-main-nav:before {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__header .qld__header__pre-header .qld__header__toggle-main-nav svg {
   color: var(--QLD-color-light__action--secondary);
@@ -33785,7 +33799,7 @@ table.dataTable.no-footer {
 }
 .qld__header .qld__header__main .qld__header__site-name .qld__header__heading {
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.25;
   font-family:
     "Noto Sans",
@@ -33806,7 +33820,7 @@ table.dataTable.no-footer {
 @media (min-width: 699px) {
   .qld__header .qld__header__main .qld__header__site-name .qld__header__heading {
     font-size: 19.2px;
-    font-size: 1.2rem;
+    font-weight: 600;
     line-height: 1.25;
   }
 }
@@ -33814,14 +33828,14 @@ table.dataTable.no-footer {
   max-width: 80ch;
   color: var(--QLD-color-light__text--lighter);
   font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 1.25;
+  font-weight: 400;
+  line-height: 1.5;
 }
 @media (min-width: 699px) {
   .qld__header .qld__header__main .qld__header__site-name .qld__header__subline {
     font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.25;
+    font-weight: 400;
+    line-height: 1.5;
   }
 }
 .qld__header .qld__header__main.qld__header__main--dark {
@@ -33934,7 +33948,7 @@ table.dataTable.no-footer {
 }
 .qld__header .qld__header__search .qld__header__search-link {
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
   float: right;
   color: var(--QLD-color-light__link);
@@ -34031,7 +34045,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 .qld__inpage-nav-links {
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
   padding-left: 24px;
   padding-left: 1.5rem;
@@ -34039,7 +34053,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 .qld__inpage-nav-links .qld__inpage-nav-links__heading {
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.25;
 }
 * + .qld__inpage-nav-links {
@@ -34140,8 +34154,8 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 .qld__inpage-nav-section-link {
   font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 0.9375;
+  font-weight: 400;
+  line-height: 1.5;
   top: 4px;
   top: 0.25rem;
   position: absolute;
@@ -34155,7 +34169,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 .qld__side-nav {
   font-size: 16px;
-  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
   font-family:
     "Noto Sans",
@@ -34192,10 +34206,18 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   padding: 16px;
   padding: 1rem;
   font-size: 12.8px;
-  font-size: 0.8rem;
-  line-height: 1.5625;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--QLD-color-light__text);
   display: block;
+}
+@media (min-width: 992px) {
+  .qld__side-nav a,
+  .qld__side-nav .active > span {
+    font-size: 12.8px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 .qld__side-nav a {
   max-width: 100%;
@@ -34277,10 +34299,9 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 .qld__side-nav .qld__accordion__title {
   font-size: 19.2px;
-  font-size: 1.2rem;
+  font-weight: 600;
   line-height: 1.25;
   color: var(--QLD-color-light__link);
-  font-weight: normal;
   background-color: inherit;
 }
 .qld__side-nav .qld__accordion__title:focus {
@@ -34378,8 +34399,9 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 .qld__side-nav .qld__sidenav__title a {
   font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.25;
   color: var(--QLD-color-light__heading);
   border-bottom: solid 2px var(--QLD-color-light__design-accent);
   border-bottom: solid 0.125rem var(--QLD-color-light__design-accent);
@@ -34389,6 +34411,14 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   text-decoration-color: var(--QLD-color-light__underline);
   text-underline-offset: var(--QLD-underline__offset);
   text-decoration-skip-ink: auto;
+}
+@media (min-width: 992px) {
+  .qld__side-nav .qld__sidenav__title a {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
 }
 .qld__side-nav .qld__sidenav__title a:hover,
 .qld__side-nav .qld__sidenav__title a:focus {
@@ -34401,11 +34431,6 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 .qld__side-nav .qld__sidenav__title a[disabled] {
   text-decoration: none;
   -webkit-text-decoration: none;
-}
-@media (min-width: 699px) {
-  .qld__side-nav .qld__sidenav__title a {
-    font-weight: bold;
-  }
 }
 .qld__side-nav .qld__sidenav__title a:hover,
 .qld__side-nav .qld__sidenav__title a:focus {

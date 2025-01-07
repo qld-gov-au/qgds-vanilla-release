@@ -11648,7 +11648,6 @@
         thead = $2("<thead/>").appendTo($this);
       }
       oSettings.nTHead = thead[0];
-      $2("tr", thead).addClass(oClasses.thead.row);
       var tbody = $this.children("tbody");
       if (tbody.length === 0) {
         tbody = $2("<tbody/>").insertAfter(thead);
@@ -11659,7 +11658,6 @@
         tfoot = $2("<tfoot/>").appendTo($this);
       }
       oSettings.nTFoot = tfoot[0];
-      $2("tr", tfoot).addClass(oClasses.tfoot.row);
       oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
       oSettings.bInitialised = true;
       var oLanguage = oSettings.oLanguage;
@@ -12814,6 +12812,9 @@
     for (var i = 0; i < cols.length; i++) {
       var width = _fnColumnsSumWidth(settings, [i], false, false);
       cols[i].colEl.css("width", width);
+      if (settings.oScroll.sX) {
+        cols[i].colEl.css("min-width", width);
+      }
     }
   }
   function _fnVisibleToColumnIndex(oSettings, iMatch) {
@@ -13339,8 +13340,11 @@
         row = $2("<tr/>").appendTo(target);
       }
       if (row.length === 1) {
-        var cells = $2("td, th", row);
-        for (i = cells.length, ien = columns.length; i < ien; i++) {
+        var cellCount = 0;
+        $2("td, th", row).each(function() {
+          cellCount += this.colSpan;
+        });
+        for (i = cellCount, ien = columns.length; i < ien; i++) {
           $2("<th/>").html(columns[i][titleProp] || "").appendTo(row);
         }
       }
@@ -13348,8 +13352,10 @@
     var detected = _fnDetectHeader(settings, target, true);
     if (side === "header") {
       settings.aoHeader = detected;
+      $2("tr", target).addClass(classes.thead.row);
     } else {
       settings.aoFooter = detected;
+      $2("tr", target).addClass(classes.tfoot.row);
     }
     $2(target).children("tr").children("th, td").each(function() {
       _fnRenderer(settings, side)(
@@ -14052,7 +14058,7 @@
         }
       }
       displayRows.length = 0;
-      displayRows.push.apply(displayRows, rows);
+      _fnArrayApply(displayRows, rows);
     }
   }
   function _fnFilter(searchRows, settings, input, options, column) {
@@ -14414,7 +14420,8 @@
     }
     if (settings.aiDisplay.length) {
       var firstTr = null;
-      for (i = settings._iDisplayStart; i < settings.aiDisplay.length; i++) {
+      var start = _fnDataSource(settings) !== "ssp" ? settings._iDisplayStart : 0;
+      for (i = start; i < start + settings.aiDisplay.length; i++) {
         var idx = settings.aiDisplay[i];
         var tr = settings.aoData[idx].nTr;
         if (tr) {
@@ -14434,6 +14441,9 @@
           var colWidth = colEl.style.width.replace("px", "");
           if (colWidth !== colSizes[i].width) {
             colEl.style.width = colSizes[i].width + "px";
+            if (scroll.sX) {
+              colEl.style.minWidth = colSizes[i].width + "px";
+            }
           }
         }
       }
@@ -14497,6 +14507,7 @@
       if (width) {
         this.style.width = width;
         if (scrollX) {
+          this.style.minWidth = width;
           $2(this).append($2("<div/>").css({
             width,
             margin: 0,
@@ -14555,14 +14566,30 @@
       table.style.width = _fnStringToCss(tableWidthAttr);
     }
     if ((tableWidthAttr || scrollX) && !settings._reszEvt) {
-      var bindResize = function() {
-        $2(window).on("resize.DT-" + settings.sInstance, DataTable.util.throttle(function() {
-          if (!settings.bDestroying) {
-            _fnAdjustColumnSizing(settings);
-          }
-        }));
+      var wrapperWidth = function() {
+        return $2(settings.nTableWrapper).is(":visible") ? $2(settings.nTableWrapper).width() : 0;
       };
-      bindResize();
+      settings.containerWidth = wrapperWidth();
+      var resize = DataTable.util.throttle(function() {
+        var newWidth = wrapperWidth();
+        if (!settings.bDestroying && settings.containerWidth !== newWidth && newWidth !== 0) {
+          _fnAdjustColumnSizing(settings);
+          settings.containerWidth = newWidth;
+        }
+      });
+      if (window.ResizeObserver) {
+        settings.resizeObserver = new ResizeObserver(function(e) {
+          var box = e[0].contentBoxSize;
+          var size = Array.isArray(box) ? box[0].inlineSize : box.inlineSize;
+          if (size < settings.containerWidth) {
+            return;
+          }
+          resize();
+        });
+        settings.resizeObserver.observe(settings.nTableWrapper);
+      } else {
+        $2(window).on("resize.DT-" + settings.sInstance, resize);
+      }
       settings._reszEvt = true;
     }
   }
@@ -14899,14 +14926,20 @@
     if (settings._bLoadingState) {
       return;
     }
+    var sorting = [];
+    _fnSortResolve(settings, sorting, settings.aaSorting);
+    var columns = settings.aoColumns;
     var state = {
       time: +/* @__PURE__ */ new Date(),
       start: settings._iDisplayStart,
       length: settings._iDisplayLength,
-      order: $2.extend(true, [], settings.aaSorting),
+      order: sorting.map(function(sort) {
+        return columns[sort[0]] && columns[sort[0]].sName ? [columns[sort[0]].sName, sort[1]] : sort.slice();
+      }),
       search: $2.extend({}, settings.oPreviousSearch),
       columns: settings.aoColumns.map(function(col, i) {
         return {
+          name: col.sName,
           visible: col.bVisible,
           search: $2.extend({}, settings.aoPreSearchCols[i])
         };
@@ -14935,6 +14968,7 @@
   function _fnImplementState(settings, s, callback) {
     var i, ien;
     var columns = settings.aoColumns;
+    var currentNames = _pluck(settings.aoColumns, "sName");
     settings._bLoadingState = true;
     var api = settings._bInitComplete ? new DataTable.Api(settings) : null;
     if (!s || !s.time) {
@@ -14950,11 +14984,6 @@
     }
     var abStateLoad = _fnCallbackFire(settings, "aoStateLoadParams", "stateLoadParams", [settings, s]);
     if (abStateLoad.indexOf(false) !== -1) {
-      settings._bLoadingState = false;
-      callback();
-      return;
-    }
-    if (s.columns && columns.length !== s.columns.length) {
       settings._bLoadingState = false;
       callback();
       return;
@@ -14979,30 +15008,54 @@
     if (s.order !== void 0) {
       settings.aaSorting = [];
       $2.each(s.order, function(i2, col2) {
-        settings.aaSorting.push(
-          col2[0] >= columns.length ? [0, col2[1]] : col2
-        );
+        var set2 = [col2[0], col2[1]];
+        if (typeof col2[0] === "string") {
+          var idx2 = currentNames.indexOf(col2[0]);
+          set2[0] = idx2 >= 0 ? idx2 : 0;
+        } else if (set2[0] >= columns.length) {
+          set2[0] = 0;
+        }
+        settings.aaSorting.push(set2);
       });
     }
     if (s.search !== void 0) {
       $2.extend(settings.oPreviousSearch, s.search);
     }
     if (s.columns) {
-      for (i = 0, ien = s.columns.length; i < ien; i++) {
-        var col = s.columns[i];
-        if (col.visible !== void 0) {
-          if (api) {
-            api.column(i).visible(col.visible, false);
+      var set = s.columns;
+      var incoming = _pluck(s.columns, "name");
+      if (incoming.join("").length && incoming.join("") !== currentNames.join("")) {
+        set = [];
+        for (i = 0; i < currentNames.length; i++) {
+          if (currentNames[i] != "") {
+            var idx = incoming.indexOf(currentNames[i]);
+            if (idx >= 0) {
+              set.push(s.columns[idx]);
+            } else {
+              set.push({});
+            }
           } else {
-            columns[i].bVisible = col.visible;
+            set.push({});
           }
         }
-        if (col.search !== void 0) {
-          $2.extend(settings.aoPreSearchCols[i], col.search);
-        }
       }
-      if (api) {
-        api.columns.adjust();
+      if (set.length === columns.length) {
+        for (i = 0, ien = set.length; i < ien; i++) {
+          var col = set[i];
+          if (col.visible !== void 0) {
+            if (api) {
+              api.column(i).visible(col.visible, false);
+            } else {
+              columns[i].bVisible = col.visible;
+            }
+          }
+          if (col.search !== void 0) {
+            $2.extend(settings.aoPreSearchCols[i], col.search);
+          }
+        }
+        if (api) {
+          api.columns.adjust();
+        }
       }
     }
     settings._bLoadingState = false;
@@ -15137,6 +15190,18 @@
     var formatter = settings.fnFormatNumber, start = settings._iDisplayStart + 1, len = settings._iDisplayLength, vis = settings.fnRecordsDisplay(), max = settings.fnRecordsTotal(), all = len === -1;
     return str.replace(/_START_/g, formatter.call(settings, start)).replace(/_END_/g, formatter.call(settings, settings.fnDisplayEnd())).replace(/_MAX_/g, formatter.call(settings, max)).replace(/_TOTAL_/g, formatter.call(settings, vis)).replace(/_PAGE_/g, formatter.call(settings, all ? 1 : Math.ceil(start / len))).replace(/_PAGES_/g, formatter.call(settings, all ? 1 : Math.ceil(vis / len))).replace(/_ENTRIES_/g, settings.api.i18n("entries", "", entries)).replace(/_ENTRIES-MAX_/g, settings.api.i18n("entries", "", max)).replace(/_ENTRIES-TOTAL_/g, settings.api.i18n("entries", "", vis));
   }
+  function _fnArrayApply(arr, data) {
+    if (!data) {
+      return;
+    }
+    if (data.length < 1e4) {
+      arr.push.apply(arr, data);
+    } else {
+      for (i = 0; i < data.length; i++) {
+        arr.push(data[i]);
+      }
+    }
+  }
   var __apiStruct = [];
   var __arrayProto = Array.prototype;
   var _toSettings = function(mixed) {
@@ -15183,15 +15248,7 @@
       ctxSettings(context);
     }
     this.context = settings.length > 1 ? _unique(settings) : settings;
-    if (data) {
-      if (data.length < 1e4) {
-        this.push.apply(this, data);
-      } else {
-        for (i = 0; i < data.length; i++) {
-          this.push(data[i]);
-        }
-      }
-    }
+    _fnArrayApply(this, data);
     this.selector = {
       rows: null,
       cols: null,
@@ -15403,7 +15460,7 @@
       var result = [];
       selector.forEach(function(sel) {
         var inner = __table_selector(sel, a);
-        result.push.apply(result, inner);
+        _fnArrayApply(result, inner);
       });
       return result.filter(function(item) {
         return item;
@@ -15855,7 +15912,7 @@
     }, 1);
     var modRows = this.rows(-1);
     modRows.pop();
-    modRows.push.apply(modRows, newRows);
+    _fnArrayApply(modRows, newRows);
     return modRows;
   });
   _api_register("row()", function(selector, opts) {
@@ -16166,7 +16223,9 @@
       }
       var jqResult = $2(nodes).filter(s).map(function() {
         return _fnColumnsFromHeader(this);
-      }).toArray();
+      }).toArray().sort(function(a, b) {
+        return a - b;
+      });
       if (jqResult.length || !s.nodeName) {
         return jqResult;
       }
@@ -16680,6 +16739,8 @@
       _fnSaveState(settings);
     });
   });
+  var __bootstrap;
+  var __foundation;
   DataTable.use = function(arg1, arg2) {
     var module2 = typeof arg1 === "string" ? arg2 : arg1;
     var type = typeof arg2 === "string" ? arg2 : arg1;
@@ -16696,13 +16757,17 @@
           return __luxon;
         case "moment":
           return __moment;
+        case "bootstrap":
+          return __bootstrap || window.bootstrap;
+        case "foundation":
+          return __foundation || window.Foundation;
         default:
           return null;
       }
     }
     if (type === "lib" || type === "jq" || module2 && module2.fn && module2.fn.jquery) {
       $2 = module2;
-    } else if (type == "win" || module2 && module2.document) {
+    } else if (type === "win" || module2 && module2.document) {
       window = module2;
       document = module2.document;
     } else if (type === "datetime" || module2 && module2.type === "DateTime") {
@@ -16711,6 +16776,10 @@
       __luxon = module2;
     } else if (type === "moment" || module2 && module2.isMoment) {
       __moment = module2;
+    } else if (type === "bootstrap" || module2 && module2.Modal && module2.Modal.NAME === "modal") {
+      __bootstrap = module2;
+    } else if (type === "foundation" || module2 && module2.Reveal) {
+      __foundation = module2;
     }
   };
   DataTable.factory = function(root, jq) {
@@ -16848,6 +16917,9 @@
       if (!remove) {
         new _Api(settings).columns().visible(true);
       }
+      if (settings.resizeObserver) {
+        settings.resizeObserver.disconnect();
+      }
       jqWrapper.off(".DT").find(":not(tbody *)").off(".DT");
       $2(window).off(".DT-" + settings.sInstance);
       if (table != thead.parentNode) {
@@ -16910,7 +16982,7 @@
     }
     return typeof resolved === "string" ? resolved.replace("%d", plural) : resolved;
   });
-  DataTable.version = "2.1.8";
+  DataTable.version = "2.2.0";
   DataTable.settings = [];
   DataTable.models = {};
   DataTable.models.oSearch = {
@@ -18571,7 +18643,11 @@
     /** Delay loading of data */
     deferLoading: null,
     /** Allow auto type detection */
-    typeDetect: true
+    typeDetect: true,
+    /** ResizeObserver for the container div */
+    resizeObserver: null,
+    /** Keep a record of the last size of the container, so we can skip duplicates */
+    containerWidth: 0
   };
   var extPagination = DataTable.ext.pager;
   $2.extend(extPagination, {
@@ -18681,7 +18757,7 @@
       if (!dt.isValid) {
         return null;
       }
-      dt.setLocale(locale);
+      dt = dt.setLocale(locale);
     } else if (!format) {
       dt = new Date(d);
     } else {
@@ -18926,6 +19002,11 @@
       ignorePunctuation: true
     });
   };
+  var __diacriticHtmlSort = function(a, b) {
+    a = _stripHtml(a);
+    b = _stripHtml(b);
+    return __diacriticSort(a, b);
+  };
   DataTable.type("string", {
     detect: function() {
       return "string";
@@ -18966,6 +19047,23 @@
     order: {
       pre: function(a) {
         return _empty(a) ? "" : a.replace ? _stripHtml(a).trim().toLowerCase() : a + "";
+      }
+    },
+    search: _filterString(true, true)
+  });
+  DataTable.type("html-utf8", {
+    detect: {
+      allOf: function(d) {
+        return _empty(d) || typeof d === "string" && d.indexOf("<") !== -1;
+      },
+      oneOf: function(d) {
+        return navigator.languages && !_empty(d) && typeof d === "string" && d.indexOf("<") !== -1 && typeof d === "string" && d.match(/[^\x00-\x7F]/);
+      }
+    },
+    order: {
+      asc: __diacriticHtmlSort,
+      desc: function(a, b) {
+        return __diacriticHtmlSort(a, b) * -1;
       }
     },
     search: _filterString(true, true)
@@ -19131,6 +19229,7 @@
           var indexes = columns.indexes();
           var sortDirs = columns.orderable(true).flatten();
           var orderedColumns = _pluck(sorting, "col");
+          var tabIndex = settings.iTabIndex;
           cell.removeClass(
             orderClasses.isAsc + " " + orderClasses.isDesc
           ).toggleClass(orderClasses.none, !orderable).toggleClass(orderClasses.canAsc, orderable && sortDirs.includes("asc")).toggleClass(orderClasses.canDesc, orderable && sortDirs.includes("desc"));
@@ -19166,8 +19265,11 @@
             orderable ? col.ariaTitle + ctx.api.i18n("oAria.orderable" + ariaType) : col.ariaTitle
           );
           if (orderable) {
-            cell.find(".dt-column-title").attr("role", "button");
-            cell.attr("tabindex", 0);
+            var orderSpan = cell.find(".dt-column-order");
+            orderSpan.attr("role", "button");
+            if (tabIndex !== -1) {
+              orderSpan.attr("tabindex", tabIndex);
+            }
           }
         });
       }
@@ -19176,7 +19278,7 @@
       _: function(settings, container, items) {
         var classes = settings.oClasses.layout;
         var row = $2("<div/>").attr("id", items.id || null).addClass(items.className || classes.row).appendTo(container);
-        $2.each(items, function(key, val) {
+        DataTable.ext.renderer.layout._forLayoutRow(items, function(key, val) {
           if (key === "id" || key === "className") {
             return;
           }
@@ -19196,6 +19298,26 @@
             id: val.id || null,
             "class": val.className ? val.className : classes.cell + " " + klass
           }).append(val.contents).appendTo(row);
+        });
+      },
+      // Shared for use by the styling frameworks
+      _forLayoutRow: function(items, fn) {
+        var layoutEnum = function(x) {
+          switch (x) {
+            case "":
+              return 0;
+            case "start":
+              return 1;
+            case "end":
+              return 2;
+            default:
+              return 3;
+          }
+        };
+        Object.keys(items).sort(function(a, b) {
+          return layoutEnum(a) - layoutEnum(b);
+        }).forEach(function(key) {
+          fn(key, items[key]);
         });
       }
     }
@@ -19404,7 +19526,7 @@
         "aria-current": btnInfo.active ? "page" : null,
         "aria-label": ariaLabel,
         "data-dt-idx": button,
-        "tabIndex": btnInfo.disabled ? -1 : settings.iTabIndex ? settings.iTabIndex : null
+        "tabIndex": btnInfo.disabled ? -1 : settings.iTabIndex && btn.clicker[0].nodeName.toLowerCase() !== "span" ? settings.iTabIndex : null
         // `0` doesn't need a tabIndex since it is the default
       });
       if (typeof button !== "number") {
@@ -19429,10 +19551,13 @@
     if (activeEl !== void 0) {
       host.find("[data-dt-idx=" + activeEl + "]").trigger("focus");
     }
-    if (buttonEls.length && // any buttons
-    opts.buttons > 1 && // prevent infinite
-    $2(host).height() >= $2(buttonEls[0]).outerHeight() * 2 - 10) {
-      _pagingDraw(settings, host, $2.extend({}, opts, { buttons: opts.buttons - 2 }));
+    if (buttonEls.length) {
+      var outerHeight = $2(buttonEls[0]).outerHeight();
+      if (opts.buttons > 1 && // prevent infinite
+      outerHeight > 0 && // will be 0 if hidden
+      $2(host).height() >= outerHeight * 2 - 10) {
+        _pagingDraw(settings, host, $2.extend({}, opts, { buttons: opts.buttons - 2 }));
+      }
     }
   }
   function _pagingButtonInfo(settings, button, page, pages) {
@@ -19445,7 +19570,6 @@
     switch (button) {
       case "ellipsis":
         o.display = "&#x2026;";
-        o.disabled = true;
         break;
       case "first":
         o.display = lang.sFirst;
@@ -19559,7 +19683,7 @@
       str.replace("_MENU_", '<span id="' + tmpId + '"></span>')
     );
     var textNodes = [];
-    Array.from(div.find("label")[0].childNodes).forEach(function(el) {
+    Array.prototype.slice.call(div.find("label")[0].childNodes).forEach(function(el) {
       if (el.nodeType === Node.TEXT_NODE) {
         textNodes.push({
           el,
@@ -19573,7 +19697,6 @@
       });
     };
     var select = $2("<select/>", {
-      "name": tableId + "_length",
       "aria-controls": tableId,
       "class": classes.select
     });
@@ -21221,7 +21344,7 @@ jquery-validation/dist/jquery.validate.js:
    *)
 
 datatables.net/js/dataTables.mjs:
-  (*! DataTables 2.1.8
+  (*! DataTables 2.2.0
    * © SpryMedia Ltd - datatables.net/license
    *)
 */

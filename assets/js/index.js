@@ -1403,10 +1403,42 @@
     return new Component("Breadcrumbs", props);
   }
 
+  // src/components/back_to_top/back-to-top.hbs?raw
+  var back_to_top_default = '{{! Back to top is true by default }}\n{{#unless hide_back_to_top}}\n  <div class="qld__widgets">\n    <a href="#" class="qld__btn qld__btn--floating qld__btn--back-to-top show" aria-label="Back to top">\n      <span>Back to top</span>\n    </a>\n  </div>\n{{/unless}}';
+
+  // src/components/back_to_top/back-to-top.js
+  var back_to_top_default2 = {
+    init() {
+    }
+  };
+
+  // src/components/back_to_top/version.json
+  var version_default3 = {
+    component: {
+      name: "Back to Top",
+      description: "Back To Top component is a button that appears when the user scrolls down the page. It allows the user to quickly scroll to the top of the page.",
+      version: "0.1",
+      status: "Draft",
+      type: "design"
+    }
+  };
+
+  // src/components/back_to_top/index.js
+  function BackToTop({ data, template = back_to_top_default }) {
+    back_to_top_default2.init();
+    const props = {
+      data,
+      template,
+      meta: version_default3 || {}
+    };
+    return new Component("BackToTop", props);
+  }
+
   // src/js/index.js
   var QGDS = {
     Example,
-    Breadcrumbs: Breadcrumbs2
+    Breadcrumbs: Breadcrumbs2,
+    BackToTop
   };
 })();
 //# sourceMappingURL=index.js.map

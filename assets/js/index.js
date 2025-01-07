@@ -1233,8 +1233,8 @@
 </nav>
 {{/ifCond}}`;
 
-  // src/components/breadcrumbs/breadcrumbsHelper.js
-  var BreadcrumbsHelper = class {
+  // src/components/breadcrumbs/breadcrumbs.js
+  var _BreadcrumbsLogic = class _BreadcrumbsLogic {
     constructor() {
       this.originalUL = null;
     }
@@ -1272,30 +1272,30 @@
       const maxW = container.offsetWidth - padding;
       activeCrumb.style.maxWidth = `${maxW}px`;
       if (!this.originalUl) {
-        this.originalUl = activeCrumb.querySelector(`ul.${BreadcrumbsLogic.CLS.LINK_LIST}`).cloneNode(true);
+        this.originalUl = activeCrumb.querySelector(`ul.${_BreadcrumbsLogic.CLS.LINK_LIST}`).cloneNode(true);
       }
       if (resized) {
         activeCrumb.querySelector(
-          `ul.${BreadcrumbsLogic.CLS.LINK_LIST}`
+          `ul.${_BreadcrumbsLogic.CLS.LINK_LIST}`
         ).innerHTML = this.originalUl.innerHTML;
       }
       const ul = activeCrumb.querySelector(
-        `ul.${BreadcrumbsLogic.CLS.LINK_LIST}`
+        `ul.${_BreadcrumbsLogic.CLS.LINK_LIST}`
       );
       ul.style.maxWidth = `${maxW}px`;
       return { activeCrumb, ul };
     }
     createMenu() {
       const wrapper = document.createElement("div");
-      wrapper.className = BreadcrumbsLogic.CLS.WRAPPER;
+      wrapper.className = _BreadcrumbsLogic.CLS.WRAPPER;
       const btn = document.createElement("button");
-      btn.className = BreadcrumbsLogic.CLS.BTN;
+      btn.className = _BreadcrumbsLogic.CLS.BTN;
       btn.setAttribute("aria-controls", "menu");
       btn.setAttribute("aria-expanded", "false");
       const svg = this.createIcon();
       btn.appendChild(svg);
       const list = document.createElement("div");
-      list.className = BreadcrumbsLogic.CLS.LIST;
+      list.className = _BreadcrumbsLogic.CLS.LIST;
       list.setAttribute("id", "menu");
       wrapper.appendChild(btn);
       wrapper.appendChild(list);
@@ -1315,10 +1315,10 @@
       return svg;
     }
     isOverflowByCount(count) {
-      return count > BreadcrumbsLogic.MIN_ITEMS;
+      return count > _BreadcrumbsLogic.MIN_ITEMS;
     }
     isOverflowByHeight(ul, items2) {
-      return ul.offsetHeight > items2[0].offsetHeight * BreadcrumbsLogic.HEIGHT_RATIO;
+      return ul.offsetHeight > items2[0].offsetHeight * _BreadcrumbsLogic.HEIGHT_RATIO;
     }
     isOverflowByWidth(ul, totalWidth) {
       const maxW = parseFloat(ul.style.maxWidth.replace(/[^\d.]/g, ""));
@@ -1364,15 +1364,16 @@
     }
   };
   // Static constants for configuration
-  __publicField(BreadcrumbsHelper, "HEIGHT_RATIO", 1.9);
-  __publicField(BreadcrumbsHelper, "MIN_ITEMS", 5);
-  __publicField(BreadcrumbsHelper, "START_IDX", 2);
-  __publicField(BreadcrumbsHelper, "CLS", {
+  __publicField(_BreadcrumbsLogic, "HEIGHT_RATIO", 1.9);
+  __publicField(_BreadcrumbsLogic, "MIN_ITEMS", 5);
+  __publicField(_BreadcrumbsLogic, "START_IDX", 2);
+  __publicField(_BreadcrumbsLogic, "CLS", {
     WRAPPER: "qld__overflow_menu_wrapper",
     BTN: "qld__overflow_menu__btn",
     LIST: "qld__overflow_menu_list",
     LINK_LIST: "qld__link-list"
   });
+  var BreadcrumbsLogic = _BreadcrumbsLogic;
 
   // src/components/breadcrumbs/version.json
   var version_default2 = {
@@ -1387,7 +1388,7 @@
 
   // src/components/breadcrumbs/index.js
   function Breadcrumbs2({ data, template = breadcrumbs_default }) {
-    const BreadcrumbsLogic2 = new BreadcrumbsHelper();
+    const BreadcrumbsLogic2 = new BreadcrumbsLogic();
     window.addEventListener("DOMContentLoaded", () => {
       BreadcrumbsLogic2.init();
     });

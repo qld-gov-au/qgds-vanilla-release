@@ -14483,6 +14483,11 @@
     }
     var table = settings.nTable, columns = settings.aoColumns, scroll = settings.oScroll, scrollY = scroll.sY, scrollX = scroll.sX, scrollXInner = scroll.sXInner, visibleColumns = _fnGetColumns(settings, "bVisible"), tableWidthAttr = table.getAttribute("width"), tableContainer = table.parentNode, i, column, columnIdx;
     var styleWidth = table.style.width;
+    var containerWidth = _fnWrapperWidth(settings);
+    if (containerWidth === settings.containerWidth) {
+      return false;
+    }
+    settings.containerWidth = containerWidth;
     if (!styleWidth && !tableWidthAttr) {
       table.style.width = "100%";
       styleWidth = "100%";
@@ -14545,13 +14550,13 @@
     } else if (scrollX) {
       tmpTable.css("width", "auto");
       tmpTable.removeAttr("width");
-      if (tmpTable.width() < tableContainer.clientWidth && tableWidthAttr) {
-        tmpTable.width(tableContainer.clientWidth);
+      if (tmpTable.outerWidth() < tableContainer.clientWidth && tableWidthAttr) {
+        tmpTable.outerWidth(tableContainer.clientWidth);
       }
     } else if (scrollY) {
-      tmpTable.width(tableContainer.clientWidth);
+      tmpTable.outerWidth(tableContainer.clientWidth);
     } else if (tableWidthAttr) {
-      tmpTable.width(tableWidthAttr);
+      tmpTable.outerWidth(tableWidthAttr);
     }
     var total = 0;
     var bodyCells = tmpTable.find("tbody tr").eq(0).children();
@@ -14566,25 +14571,20 @@
       table.style.width = _fnStringToCss(tableWidthAttr);
     }
     if ((tableWidthAttr || scrollX) && !settings._reszEvt) {
-      var wrapperWidth = function() {
-        return $2(settings.nTableWrapper).is(":visible") ? $2(settings.nTableWrapper).width() : 0;
-      };
-      settings.containerWidth = wrapperWidth();
       var resize = DataTable.util.throttle(function() {
-        var newWidth = wrapperWidth();
-        if (!settings.bDestroying && settings.containerWidth !== newWidth && newWidth !== 0) {
+        var newWidth = _fnWrapperWidth(settings);
+        if (!settings.bDestroying && newWidth !== 0) {
           _fnAdjustColumnSizing(settings);
-          settings.containerWidth = newWidth;
         }
       });
       if (window.ResizeObserver) {
+        var first = $2(settings.nTableWrapper).is(":visible");
         settings.resizeObserver = new ResizeObserver(function(e) {
-          var box = e[0].contentBoxSize;
-          var size = Array.isArray(box) ? box[0].inlineSize : box.inlineSize;
-          if (size < settings.containerWidth) {
-            return;
+          if (first) {
+            first = false;
+          } else {
+            resize();
           }
-          resize();
         });
         settings.resizeObserver.observe(settings.nTableWrapper);
       } else {
@@ -14592,6 +14592,9 @@
       }
       settings._reszEvt = true;
     }
+  }
+  function _fnWrapperWidth(settings) {
+    return $2(settings.nTableWrapper).is(":visible") ? $2(settings.nTableWrapper).width() : 0;
   }
   function _fnGetMaxLenString(settings, colIdx) {
     var column = settings.aoColumns[colIdx];
@@ -16396,6 +16399,7 @@
   });
   _api_register("columns.adjust()", function() {
     return this.iterator("table", function(settings) {
+      settings.containerWidth = -1;
       _fnAdjustColumnSizing(settings);
     }, 1);
   });
@@ -16982,7 +16986,7 @@
     }
     return typeof resolved === "string" ? resolved.replace("%d", plural) : resolved;
   });
-  DataTable.version = "2.2.0";
+  DataTable.version = "2.2.1";
   DataTable.settings = [];
   DataTable.models = {};
   DataTable.models.oSearch = {
@@ -18647,7 +18651,7 @@
     /** ResizeObserver for the container div */
     resizeObserver: null,
     /** Keep a record of the last size of the container, so we can skip duplicates */
-    containerWidth: 0
+    containerWidth: -1
   };
   var extPagination = DataTable.ext.pager;
   $2.extend(extPagination, {
@@ -21344,7 +21348,7 @@ jquery-validation/dist/jquery.validate.js:
    *)
 
 datatables.net/js/dataTables.mjs:
-  (*! DataTables 2.2.0
+  (*! DataTables 2.2.1
    * © SpryMedia Ltd - datatables.net/license
    *)
 */

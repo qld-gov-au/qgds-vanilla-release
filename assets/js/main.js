@@ -10539,171 +10539,8 @@
     });
   }
 
-  // src/components/breadcrumbs/js/global.js
-  function global_default9(QLD) {
-    "use strict";
-    var breadcrumb = {};
-    var originalBreadCrumbUl = null;
-    function getTheElements(resized = false) {
-      const bannerBreadCrumbsAll = document.querySelectorAll(
-        "nav.qld__banner__breadcrumbs--desktop"
-      );
-      const bodyBreadCrumbsAll = document.querySelectorAll(
-        "section.qld__body--breadcrumb nav.qld__breadcrumbs"
-      );
-      const bannerBreadCrumbArray = [...bannerBreadCrumbsAll, ...bodyBreadCrumbsAll];
-      const bannerBreadCrumb = bannerBreadCrumbArray.find(
-        (breadcrumb2) => {
-          return breadcrumb2.offsetWidth > 0;
-        }
-      );
-      if (bannerBreadCrumb) {
-        const containerFluid = bannerBreadCrumb.closest(".container-fluid");
-        const containerFluidStyle = window.getComputedStyle(containerFluid);
-        const paddings = parseFloat(containerFluidStyle.getPropertyValue("padding-right").replace(/[^\d.]/g, "")) + parseFloat(containerFluidStyle.getPropertyValue("padding-left").replace(/[^\d.]/g, ""));
-        bannerBreadCrumb.style.maxWidth = containerFluid.offsetWidth - paddings + "px";
-        if (!originalBreadCrumbUl) {
-          originalBreadCrumbUl = bannerBreadCrumb.querySelector("ul.qld__link-list").cloneNode(true);
-        }
-        if (resized) {
-          bannerBreadCrumb.querySelector("ul.qld__link-list").innerHTML = originalBreadCrumbUl.innerHTML;
-        }
-        const breadCrumbsUl = bannerBreadCrumb.querySelector("ul.qld__link-list");
-        breadCrumbsUl.style.maxWidth = containerFluid.offsetWidth - paddings + "px";
-        return {
-          bannerBreadCrumb,
-          breadCrumbsUl
-        };
-      }
-    }
-    function createOverFlow() {
-      const overFlowWrapper = document.createElement("div");
-      overFlowWrapper.className = "qld__overflow_menu_wrapper";
-      const button = document.createElement("button");
-      button.className = "qld__btn qld__btn--toggle qld__overflow_menu__btn qld__accordion--closed";
-      button.setAttribute("href", "#");
-      button.setAttribute("aria-controls", "overflow-menu--");
-      button.setAttribute("aria-expanded", "false");
-      const svg = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "svg"
-      );
-      svg.classList.add("qld__icon");
-      svg.classList.add("qld__icon--lg");
-      svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-      svg.setAttribute("viewBox", "0 0 448 512");
-      svg.setAttribute("aria-hidden", "true");
-      svg.setAttribute("focusable", "false");
-      svg.setAttribute("width", "24");
-      svg.setAttribute("height", "32");
-      svg.setAttribute("role", "img");
-      const path = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "path"
-      );
-      path.setAttribute("fill", "currentColor");
-      path.setAttribute(
-        "d",
-        "M352 256C352 238.3 366.3 224 384 224C401.7 224 416 238.3 416 256C416 273.7 401.7 288 384 288C366.3 288 352 273.7 352 256zM192 256C192 238.3 206.3 224 224 224C241.7 224 256 238.3 256 256C256 273.7 241.7 288 224 288C206.3 288 192 273.7 192 256zM96 256C96 273.7 81.67 288 64 288C46.33 288 32 273.7 32 256C32 238.3 46.33 224 64 224C81.67 224 96 238.3 96 256z"
-      );
-      svg.appendChild(path);
-      button.appendChild(svg);
-      overFlowWrapper.appendChild(button);
-      const div = document.createElement("div");
-      div.className = "qld__overflow_menu qld__accordion--closed";
-      div.setAttribute("id", "overflow-menu--");
-      const ul = document.createElement("ul");
-      ul.className = "qld__overflow_menu_list";
-      ul.setAttribute("aria-label", "qld__overflow_menu qld__link-columns");
-      div.appendChild(ul);
-      overFlowWrapper.appendChild(div);
-      return overFlowWrapper;
-    }
-    function insertOverFlowButton(overFlowWrapper, element) {
-      const newElement = document.createElement("div");
-      newElement.className = "qld__overflow_menu_list-item";
-      const link = element.querySelector("a");
-      link.classList.add("qld__overflow_menu_list-item-link");
-      link.setAttribute("tabindex", "0");
-      newElement.appendChild(link);
-      const ul = overFlowWrapper.querySelector("ul");
-      ul.appendChild(newElement);
-      return overFlowWrapper;
-    }
-    function truncateLastLi(breadCrumbsUlLis) {
-      breadCrumbsUlLis[breadCrumbsUlLis.length - 1].style.overflow = "hidden";
-    }
-    function appendOverflow(breadCrumbsUlLis, overflowMenu, breadcrumbUL) {
-      breadCrumbsUlLis[1].innerHTML = "";
-      breadCrumbsUlLis[1].className = "qld__overflow_menu--breadcrumbs";
-      breadCrumbsUlLis[1].appendChild(overflowMenu);
-      breadCrumbsUlLis[1].style.display = "flex";
-    }
-    breadcrumb.init = function() {
-      if (getTheElements()) {
-        const { breadCrumbsUl } = getTheElements();
-        const breadCrumbsUlLis = breadCrumbsUl.querySelectorAll("li");
-        if (breadCrumbsUlLis.length > 2 && breadCrumbsUlLis[0].offsetHeight > 0) {
-          const overflowMenu = createOverFlow();
-          let breadcrumbLisLength = breadCrumbsUlLis.length;
-          let i = 1;
-          let totalLisOffsetWidth = 0;
-          for (let i2 = 0; i2 < breadCrumbsUlLis.length; i2++) {
-            totalLisOffsetWidth += breadCrumbsUlLis[i2].offsetWidth;
-          }
-          if (breadcrumbLisLength > 5) {
-            insertOverFlowButton(overflowMenu, breadCrumbsUlLis[1]);
-            breadCrumbsUlLis[1].style.display = "none";
-            appendOverflow(breadCrumbsUlLis, overflowMenu, breadCrumbsUl);
-            i = 2;
-            while (i < breadCrumbsUlLis.length - 2) {
-              insertOverFlowButton(overflowMenu, breadCrumbsUlLis[i]);
-              breadCrumbsUlLis[i].style.display = "none";
-              i++;
-            }
-          } else if (breadCrumbsUl.offsetHeight > breadCrumbsUlLis[0].offsetHeight * 1.9) {
-            if (breadcrumbLisLength > 3) {
-              insertOverFlowButton(overflowMenu, breadCrumbsUlLis[1]);
-              breadCrumbsUlLis[1].style.display = "none";
-              appendOverflow(breadCrumbsUlLis, overflowMenu, breadCrumbsUl);
-            }
-            i = 2;
-            while (breadCrumbsUl.offsetHeight > breadCrumbsUlLis[0].offsetHeight * 1.9 && i < breadcrumbLisLength - 2) {
-              insertOverFlowButton(overflowMenu, breadCrumbsUlLis[i]);
-              breadCrumbsUlLis[i].style.display = "none";
-              i++;
-            }
-          } else if (parseFloat(breadCrumbsUl.style.maxWidth.replace(/[^\d.]/g, "")) < totalLisOffsetWidth) {
-            if (breadcrumbLisLength > 3) {
-              insertOverFlowButton(overflowMenu, breadCrumbsUlLis[1]);
-              breadCrumbsUlLis[1].style.display = "none";
-              appendOverflow(breadCrumbsUlLis, overflowMenu, breadCrumbsUl);
-            }
-            i = 2;
-            while (parseFloat(breadCrumbsUl.style.maxWidth.replace(/[^\d.]/g, "")) < totalLisOffsetWidth && i < breadcrumbLisLength - 2) {
-              insertOverFlowButton(overflowMenu, breadCrumbsUlLis[i]);
-              breadCrumbsUlLis[i].style.display = "none";
-              i++;
-            }
-          }
-          truncateLastLi(breadCrumbsUlLis, breadCrumbsUl);
-        }
-      }
-    };
-    QLD.breadcrumb = breadcrumb;
-    window.addEventListener("DOMContentLoaded", function() {
-      QLD.breadcrumb.init();
-      QLD.accordion.init("overflow");
-    });
-    window.addEventListener("resize", function() {
-      getTheElements(true);
-      QLD.breadcrumb.init();
-      QLD.accordion.init("overflow");
-    });
-  }
-
   // src/components/card_multi_action/js/global.js
-  function global_default10(QLD) {
+  function global_default9(QLD) {
     "use strict";
     let multiActionCards = {};
     multiActionCards.init = function() {
@@ -11279,7 +11116,7 @@
   })(Prism);
 
   // src/components/code/js/global.js
-  function global_default11(QLD) {
+  function global_default10(QLD) {
     var code = {};
     code.init = function() {
       const codes = document.querySelectorAll("code");
@@ -14483,6 +14320,11 @@
     }
     var table = settings.nTable, columns = settings.aoColumns, scroll = settings.oScroll, scrollY = scroll.sY, scrollX = scroll.sX, scrollXInner = scroll.sXInner, visibleColumns = _fnGetColumns(settings, "bVisible"), tableWidthAttr = table.getAttribute("width"), tableContainer = table.parentNode, i, column, columnIdx;
     var styleWidth = table.style.width;
+    var containerWidth = _fnWrapperWidth(settings);
+    if (containerWidth === settings.containerWidth) {
+      return false;
+    }
+    settings.containerWidth = containerWidth;
     if (!styleWidth && !tableWidthAttr) {
       table.style.width = "100%";
       styleWidth = "100%";
@@ -14545,13 +14387,13 @@
     } else if (scrollX) {
       tmpTable.css("width", "auto");
       tmpTable.removeAttr("width");
-      if (tmpTable.width() < tableContainer.clientWidth && tableWidthAttr) {
-        tmpTable.width(tableContainer.clientWidth);
+      if (tmpTable.outerWidth() < tableContainer.clientWidth && tableWidthAttr) {
+        tmpTable.outerWidth(tableContainer.clientWidth);
       }
     } else if (scrollY) {
-      tmpTable.width(tableContainer.clientWidth);
+      tmpTable.outerWidth(tableContainer.clientWidth);
     } else if (tableWidthAttr) {
-      tmpTable.width(tableWidthAttr);
+      tmpTable.outerWidth(tableWidthAttr);
     }
     var total = 0;
     var bodyCells = tmpTable.find("tbody tr").eq(0).children();
@@ -14566,25 +14408,20 @@
       table.style.width = _fnStringToCss(tableWidthAttr);
     }
     if ((tableWidthAttr || scrollX) && !settings._reszEvt) {
-      var wrapperWidth = function() {
-        return $2(settings.nTableWrapper).is(":visible") ? $2(settings.nTableWrapper).width() : 0;
-      };
-      settings.containerWidth = wrapperWidth();
       var resize = DataTable.util.throttle(function() {
-        var newWidth = wrapperWidth();
-        if (!settings.bDestroying && settings.containerWidth !== newWidth && newWidth !== 0) {
+        var newWidth = _fnWrapperWidth(settings);
+        if (!settings.bDestroying && newWidth !== 0) {
           _fnAdjustColumnSizing(settings);
-          settings.containerWidth = newWidth;
         }
       });
       if (window.ResizeObserver) {
+        var first = $2(settings.nTableWrapper).is(":visible");
         settings.resizeObserver = new ResizeObserver(function(e) {
-          var box = e[0].contentBoxSize;
-          var size = Array.isArray(box) ? box[0].inlineSize : box.inlineSize;
-          if (size < settings.containerWidth) {
-            return;
+          if (first) {
+            first = false;
+          } else {
+            resize();
           }
-          resize();
         });
         settings.resizeObserver.observe(settings.nTableWrapper);
       } else {
@@ -14592,6 +14429,9 @@
       }
       settings._reszEvt = true;
     }
+  }
+  function _fnWrapperWidth(settings) {
+    return $2(settings.nTableWrapper).is(":visible") ? $2(settings.nTableWrapper).width() : 0;
   }
   function _fnGetMaxLenString(settings, colIdx) {
     var column = settings.aoColumns[colIdx];
@@ -16396,6 +16236,7 @@
   });
   _api_register("columns.adjust()", function() {
     return this.iterator("table", function(settings) {
+      settings.containerWidth = -1;
       _fnAdjustColumnSizing(settings);
     }, 1);
   });
@@ -16982,7 +16823,7 @@
     }
     return typeof resolved === "string" ? resolved.replace("%d", plural) : resolved;
   });
-  DataTable.version = "2.2.0";
+  DataTable.version = "2.2.1";
   DataTable.settings = [];
   DataTable.models = {};
   DataTable.models.oSearch = {
@@ -18647,7 +18488,7 @@
     /** ResizeObserver for the container div */
     resizeObserver: null,
     /** Keep a record of the last size of the container, so we can skip duplicates */
-    containerWidth: 0
+    containerWidth: -1
   };
   var extPagination = DataTable.ext.pager;
   $2.extend(extPagination, {
@@ -19735,7 +19576,7 @@
   });
 
   // src/components/data_table/js/global.js
-  function global_default12(QLD) {
+  function global_default11(QLD) {
     "use strict";
     var dataTable = {};
     function readCSVFile(url, callback) {
@@ -20007,7 +19848,7 @@
   }
 
   // src/components/date_picker/js/global.js
-  function global_default13(QLD) {
+  function global_default12(QLD) {
     "use strict";
     let datePickers = {};
     datePickers.init = () => {
@@ -20048,7 +19889,7 @@
   }
 
   // src/components/file_upload/js/global.js
-  function global_default14(QLD) {
+  function global_default13(QLD) {
     "use strict";
     let fileUploads = {
       "inputs": {}
@@ -20557,7 +20398,7 @@
   }
 
   // src/components/global_alert/js/global.js
-  function global_default15(QLD) {
+  function global_default14(QLD) {
     "use strict";
     function initGlobalAlert() {
       let alerts = document.getElementsByClassName("qld__global-alert") || [];
@@ -20593,7 +20434,7 @@
   }
 
   // src/components/header/js/global.js
-  function global_default16(QLD) {
+  function global_default15(QLD) {
     var searchToggle = document.querySelector(".qld__main-nav__toggle-search");
     var searchForm = document.querySelector(".qld__header__search .qld__search-form");
     var headerSearchEvents = {};
@@ -20719,7 +20560,7 @@
   }
 
   // src/components/in_page_navigation/js/global.js
-  function global_default17(QLD) {
+  function global_default16(QLD) {
     var inPageNav = {};
     inPageNav.init = function() {
       var navs = document.querySelectorAll(".qld__inpage-nav-links");
@@ -20751,7 +20592,7 @@
   }
 
   // src/components/left_hand_navigation/js/global.js
-  function global_default18(QLD) {
+  function global_default17(QLD) {
     "use strict";
     window.addEventListener("DOMContentLoaded", function() {
       var itemToggles = document.querySelectorAll(".qld__left-nav__item-toggle");
@@ -20772,7 +20613,7 @@
   }
 
   // src/components/main_navigation/js/global.js
-  function global_default19(QLD) {
+  function global_default18(QLD) {
     var mobileNav = {};
     var mobileNavEvents = {};
     var mobileNavAnimating = false;
@@ -20982,7 +20823,7 @@
   }
 
   // src/components/mega_main_navigation/js/global.js
-  function global_default20(QLD) {
+  function global_default19(QLD) {
     var megaMenu = {
       /**
        * Initialise the mega menu listeners for keyboard navigation
@@ -21067,7 +20908,7 @@
   }
 
   // src/components/promo_panel/js/global.js
-  function global_default21(QLD) {
+  function global_default20(QLD) {
     "use strict";
     var initPromoPanel = {};
     initPromoPanel.init = function() {
@@ -21096,7 +20937,7 @@
   }
 
   // src/components/tab/js/global.js
-  function global_default22(QLD) {
+  function global_default21(QLD) {
     "use strict";
     var tab = {};
     const SCROLL_AMOUNT = 500;
@@ -21290,7 +21131,6 @@
     global_default19(QLD);
     global_default20(QLD);
     global_default21(QLD);
-    global_default22(QLD);
   }
 
   // src/js/main.js
@@ -21344,7 +21184,7 @@ jquery-validation/dist/jquery.validate.js:
    *)
 
 datatables.net/js/dataTables.mjs:
-  (*! DataTables 2.2.0
+  (*! DataTables 2.2.1
    * © SpryMedia Ltd - datatables.net/license
    *)
 */

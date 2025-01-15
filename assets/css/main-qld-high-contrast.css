@@ -25540,7 +25540,7 @@ table thead tr:nth-child(2) {
 table .qld__table__header,
 table th {
   padding: 1.25rem 0.75rem 1.25rem 0.75rem;
-  box-shadow: inset 0 0 -2px 0 var(--QLD-color-light__design-accent);
+  box-shadow: inset 0 0 calc(-1 * var(--QLD-border-width-default)) 0 var(--QLD-color-light__design-accent);
   color: var(--QLD-color-light__heading);
   font-size: 16px;
   font-weight: 600;
@@ -25693,7 +25693,7 @@ table .qld__table__cell,
 table td {
   padding: 12px;
   padding: 0.75rem;
-  box-shadow: inset 0 -1px 0 var(--QLD-color-neutral--lighter);
+  box-shadow: inset 0 calc(-1 * var(--QLD-border-width-thin)) 0 var(--QLD-color-neutral--lighter);
 }
 .qld__table .qld__table__cell.qld__table__cell--numeric,
 .qld__table td.qld__table__cell--numeric,
@@ -25726,7 +25726,7 @@ table tfoot td {
 }
 .qld__table tfoot td:first-of-type,
 table tfoot td:first-of-type {
-  border-radius: 0 0 12px 0;
+  border-radius: 0 0 var(--QLD-border-radius-sm) 0;
 }
 .qld__table .qld__table__cell-left-border,
 table .qld__table__cell-left-border {
@@ -25799,8 +25799,8 @@ table.qld__table__col-10-right-border tr td:nth-child(10) {
 .qld__body--dark-alt table .qld__table__header,
 .qld__body--dark-alt table th {
   color: var(--QLD-color-dark__heading);
-  -webkit-box-shadow: inset 0 -2px 0 var(---QLD-color-dark__design-accent);
-  box-shadow: inset 0 -2px 0 var(--QLD-color-dark__design-accent);
+  -webkit-box-shadow: inset 0 calc(-1 * var(--QLD-border-width-default)) 0 var(---QLD-color-dark__design-accent);
+  box-shadow: inset 0 calc(-1 * var(--QLD-border-width-default)) 0 var(--QLD-color-dark__design-accent);
 }
 .qld__body--dark .qld__table .qld__table__header tr:nth-child(2),
 .qld__body--dark .qld__table th tr:nth-child(2),
@@ -25820,7 +25820,7 @@ table.qld__table__col-10-right-border tr td:nth-child(10) {
 .qld__body--dark table td,
 .qld__body--dark-alt table .qld__table__cell,
 .qld__body--dark-alt table td {
-  box-shadow: inset 0 0 -1px 0 var(--QLD-color-dark__border);
+  box-shadow: inset 0 0 calc(-1 * var(--QLD-border-width-thin)) 0 var(--QLD-color-dark__border);
 }
 .qld__body--dark .qld__table caption,
 .qld__body--dark .qld__table .qld__table__caption,
@@ -25852,7 +25852,7 @@ table.qld__table__col-10-right-border tr td:nth-child(10) {
 .qld__body--dark-alt .qld__table tfoot td:first-of-type,
 .qld__body--dark table tfoot td:first-of-type,
 .qld__body--dark-alt table tfoot td:first-of-type {
-  border-radius: 0 0 12px 0;
+  border-radius: 0 0 var(--QLD-border-radius-sm) 0;
 }
 .qld__body--dark .qld__table .qld__table__cell-left-border,
 .qld__body--dark-alt .qld__table .qld__table__cell-left-border,
@@ -25991,7 +25991,7 @@ table.qld__table--striped tbody tr:nth-last-child(odd) {
 }
 .qld__table--contained,
 .qld__table--scroll {
-  border-radius: 12px;
+  border-radius: var(--QLD-border-radius-sm);
 }
 .qld__table--contained {
   width: 100%;
@@ -26004,7 +26004,7 @@ table.qld__table--striped tbody tr:nth-last-child(odd) {
 }
 .qld__table--scroll {
   border: 1px solid var(--QLD-color-light__border);
-  border-radius: 12px;
+  border-radius: var(--QLD-border-radius-sm);
   max-height: 640px;
   overflow-y: auto;
 }
@@ -31259,7 +31259,7 @@ table.dataTable.no-footer {
   color: var(--QLD-color-light__link);
   color: var(--QLD-color-light__underline--hover);
   padding: 1.25rem 0.75rem 1.25rem 0.75rem;
-  box-shadow: inset 0 0 -var(--QLD-border-width-default) 0 var(--QLD-color-light__border--alt);
+  box-shadow: inset 0 0 calc(-1 * var(--QLD-border-width-default)) 0 var(--QLD-color-light__border--alt);
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0;
@@ -31270,11 +31270,11 @@ table.dataTable.no-footer {
 .qld__data-table thead tr th:hover,
 .qld__data-table thead tr th:focus {
   text-decoration: underline;
-  box-shadow: inset 0 -2px 0 var(--QLD-color-light__action--primary-hover);
+  box-shadow: inset 0 calc(-1 * var(--QLD-border-width-default)) 0 var(--QLD-color-light__action--primary-hover);
 }
 .qld__data-table .qld__data-table__head tr th:active,
 .qld__data-table thead tr th:active {
-  box-shadow: inset 0 -2px 0 var(--QLD-color-light__design-accent);
+  box-shadow: inset 0 calc(-1 * var(--QLD-border-width-default)) 0 var(--QLD-color-light__design-accent);
 }
 @media (min-width: 992px) {
   .qld__data-table .qld__data-table__head tr th,
@@ -31397,7 +31397,7 @@ table.dataTable.no-footer {
   padding: 12px;
   padding: 0.75rem;
   padding: 12px 12px 12px 12px;
-  box-shadow: inset 0 0 -var(--QLD-border-width-thin) 0 var(--QLD-color-neutral--lighter);
+  box-shadow: inset 0 0 calc(-1 * var(--QLD-border-width-thin)) 0 var(--QLD-color-neutral--lighter);
 }
 .qld__data-table .qld__data-table__cell.qld__data-table__cell--numeric,
 .qld__data-table td.qld__data-table__cell--numeric {
@@ -31628,7 +31628,7 @@ table.dataTable.no-footer {
 .qld__body--dark .qld__data-table td,
 .qld__body--dark-alt .qld__data-table .qld__data-table__cell,
 .qld__body--dark-alt .qld__data-table td {
-  box-shadow: inset 0 0 -var(--QLD-border-width-thin) 0 var(--QLD-color-dark__border);
+  box-shadow: inset 0 0 calc(-1 * var(--QLD-border-width-thin)) 0 var(--QLD-color-dark__border);
 }
 .qld__body--dark .qld__data-table .qld__data-table__cell.sorting_1,
 .qld__body--dark .qld__data-table td.sorting_1,
@@ -31640,7 +31640,7 @@ table.dataTable.no-footer {
 .qld__body--dark .qld__data-table th,
 .qld__body--dark-alt .qld__data-table .qld__data-table__header,
 .qld__body--dark-alt .qld__data-table th {
-  box-shadow: inset 0 0 -var(--QLD-border-width-default) 0 var(--QLD-color-dark__border--alt);
+  box-shadow: inset 0 0 calc(-1 * var(--QLD-border-width-default)) 0 var(--QLD-color-dark__border--alt);
   color: var(--QLD-color-dark__heading);
   background-color: var(--QLD-color-dark__background);
 }
@@ -31706,7 +31706,7 @@ table.dataTable.no-footer {
 .qld__body--dark .qld__data-table td,
 .qld__body--dark-alt .qld__data-table .qld__data-table__cell,
 .qld__body--dark-alt .qld__data-table td {
-  box-shadow: inset 0 0 -var(--QLD-border-width-thin) 0 var(--QLD-color-dark__border);
+  box-shadow: inset 0 0 calc(-1 * var(--QLD-border-width-thin)) 0 var(--QLD-color-dark__border);
 }
 .qld__body--dark .qld__data-table caption,
 .qld__body--dark .qld__data-table .qld__data-table__caption,
@@ -31835,7 +31835,7 @@ table.dataTable.no-footer {
 }
 .qld__body--dark-alt .qld__data-table .qld__data-table__header,
 .qld__body--dark-alt .qld__data-table th {
-  box-shadow: inset 0 0 -var(--QLD-border-width-default) 0 var(--QLD-color-dark__border);
+  box-shadow: inset 0 0 calc(-1 * var(--QLD-border-width-default)) 0 var(--QLD-color-dark__border);
   color: var(--QLD-color-dark__heading);
   background-color: var(--QLD-color-dark__background--alt);
 }
@@ -31847,7 +31847,7 @@ table.dataTable.no-footer {
 }
 .qld__body--dark-alt .qld__data-table .qld__data-table__header,
 .qld__body--dark-alt .qld__data-table th {
-  box-shadow: inset 0 0 -var(--QLD-border-width-default) 0 var(--QLD-color-dark__border);
+  box-shadow: inset 0 0 calc(-1 * var(--QLD-border-width-default)) 0 var(--QLD-color-dark__border);
   color: var(--QLD-color-dark__heading);
   background-color: var(--QLD-color-dark__background--alt);
 }

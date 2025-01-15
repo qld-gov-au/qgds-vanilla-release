@@ -46,27 +46,34 @@
   --QLD-border-width-medium: 3px;
   --QLD-border-width-thick: 4px;
   --QLD-border-width-extra-thick: 8px;
-  --QLD-default-mobile-xs: 14px;
+  --QLD-default-mobile-xs: 16px;
   --QLD-default-mobile-sm: 16px;
-  --QLD-default-mobile-md: 20px;
-  --QLD-default-mobile-lg: 24px;
-  --QLD-default-mobile-xl: 28px;
-  --QLD-default-mobile-xxl: 32px;
-  --QLD-default-mobile-xxxl: 40px;
-  --QLD-default-desktop-xs: 14px;
+  --QLD-default-mobile-md: 16px;
+  --QLD-default-mobile-lg: 19.2px;
+  --QLD-default-mobile-xl: 23.04px;
+  --QLD-default-mobile-xxl: 27.648px;
+  --QLD-default-mobile-xxxl: 33.1776px;
+  --QLD-heading-space-mobile-xs: 1.5;
+  --QLD-heading-space-mobile-sm: 1.5;
+  --QLD-heading-space-mobile-md: 1.25;
+  --QLD-heading-space-mobile-lg: 1.25;
+  --QLD-heading-space-mobile-xl: 1.25;
+  --QLD-heading-space-mobile-xxl: 1.25;
+  --QLD-heading-space-mobile-xxxl: 1.25;
+  --QLD-default-desktop-xs: 16px;
   --QLD-default-desktop-sm: 16px;
-  --QLD-default-desktop-md: 20px;
-  --QLD-default-desktop-lg: 24px;
-  --QLD-default-desktop-xl: 32px;
-  --QLD-default-desktop-xxl: 40px;
-  --QLD-default-desktop-xxxl: 48px;
-  --QLD-heading-space-xs: 16px;
-  --QLD-heading-space-sm: 20px;
-  --QLD-heading-space-md: 24px;
-  --QLD-heading-space-lg: 32px;
-  --QLD-heading-space-xl: 40px;
-  --QLD-heading-space-xxl: 52px;
-  --QLD-heading-space-xxxl: 60px;
+  --QLD-default-desktop-md: 19.2px;
+  --QLD-default-desktop-lg: 23.04px;
+  --QLD-default-desktop-xl: 27.648px;
+  --QLD-default-desktop-xxl: 33.1776px;
+  --QLD-default-desktop-xxxl: 39.8131px;
+  --QLD-heading-space-desktop-xs: 1.5;
+  --QLD-heading-space-desktop-sm: 1.5;
+  --QLD-heading-space-desktop-md: 1.25;
+  --QLD-heading-space-desktop-lg: 1.25;
+  --QLD-heading-space-desktop-xl: 1.25;
+  --QLD-heading-space-desktop-xxl: 1.25;
+  --QLD-heading-space-desktop-xxxl: 1.25;
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -1251,102 +1258,102 @@ img.pull-right {
 }
 .qld__body .qld__default-xs {
   font-size: var(--QLD-default-mobile-xs);
-  line-height: 20px;
+  line-height: var(--QLD-heading-space-mobile-xs);
 }
 .qld__body .qld__default-xs.qld__heading-space {
-  line-height: var(--QLD-heading-space-xs);
+  line-height: var(--QLD-heading-space-mobile-xs);
 }
 .qld__body .qld__default-sm {
   font-size: var(--QLD-default-mobile-sm);
-  line-height: 24px;
+  line-height: var(--QLD-heading-space-mobile-sm);
 }
 .qld__body .qld__default-sm.qld__heading-space {
-  line-height: var(--QLD-heading-space-sm);
+  line-height: var(--QLD-heading-space-mobile-sm);
 }
 .qld__body .qld__default-md {
   font-size: var(--QLD-default-mobile-md);
-  line-height: 32px;
+  line-height: var(--QLD-heading-space-mobile-md);
 }
 .qld__body .qld__default-md.qld__heading-space {
-  line-height: var(--QLD-heading-space-md);
+  line-height: var(--QLD-heading-space-mobile-md);
 }
 .qld__body .qld__default-lg {
   font-size: var(--QLD-default-mobile-lg);
-  line-height: 36px;
+  line-height: var(--QLD-heading-space-mobile-lg);
 }
 .qld__body .qld__default-lg.qld__heading-space {
-  line-height: var(--QLD-heading-space-lg);
+  line-height: var(--QLD-heading-space-mobile-lg);
 }
 .qld__body .qld__default-xl {
   font-size: var(--QLD-default-mobile-xl);
-  line-height: 36px;
+  line-height: var(--QLD-heading-space-mobile-xl);
 }
 .qld__body .qld__default-xl.qld__heading-space {
-  line-height: var(--QLD-heading-space-xl);
+  line-height: var(--QLD-heading-space-mobile-xl);
 }
 .qld__body .qld__default-xxl {
   font-size: var(--QLD-default-mobile-xxl);
-  line-height: 48px;
+  line-height: var(--QLD-heading-space-mobile-xxl);
 }
 .qld__body .qld__default-xxl.qld__heading-space {
-  line-height: var(--QLD-heading-space-xxl);
+  line-height: var(--QLD-heading-space-mobile-xxl);
 }
 .qld__body .qld__default-xxxl {
   font-size: var(--QLD-default-mobile-xxxl);
-  line-height: 60px;
+  line-height: var(--QLD-heading-space-mobile-xxxl);
 }
 .qld__body .qld__default-xxxl.qld__heading-space {
-  line-height: var(--QLD-heading-space-xxxl);
+  line-height: var(--QLD-heading-space-mobile-xxxl);
 }
 @media (min-width: 992px) {
   .qld__body .qld__default-xs {
     font-size: var(--QLD-default-desktop-xs);
-    line-height: 20px;
+    line-height: var(--QLD-heading-space-desktop-xs);
   }
   .qld__body .qld__default-sm {
     font-size: var(--QLD-default-desktop-sm);
-    line-height: 24px;
+    line-height: var(--QLD-heading-space-desktop-sm);
   }
   .qld__body .qld__default-md {
     font-size: var(--QLD-default-desktop-md);
-    line-height: 32px;
+    line-height: var(--QLD-heading-space-desktop-md);
   }
   .qld__body .qld__default-lg {
     font-size: var(--QLD-default-desktop-lg);
-    line-height: 36px;
+    line-height: var(--QLD-heading-space-desktop-lg);
   }
   .qld__body .qld__default-xl {
     font-size: var(--QLD-default-desktop-xl);
-    line-height: 48px;
+    line-height: var(--QLD-heading-space-desktop-xl);
   }
   .qld__body .qld__default-xxl {
     font-size: var(--QLD-default-desktop-xxl);
-    line-height: 60px;
+    line-height: var(--QLD-heading-space-desktop-xxl);
   }
   .qld__body .qld__default-xxxl {
     font-size: var(--QLD-default-desktop-xxxl);
-    line-height: 72px;
+    line-height: var(--QLD-heading-space-desktop-xxxl);
   }
   .qld__body .qld__default-xs.qld__heading-space {
-    line-height: var(--QLD-heading-space-xs);
+    line-height: var(--QLD-heading-space-desktop-xs);
   }
   .qld__body .qld__default-sm.qld__heading-space {
-    line-height: var(--QLD-heading-space-sm);
+    line-height: var(--QLD-heading-space-desktop-sm);
   }
   .qld__body .qld__default-md.qld__heading-space {
-    line-height: var(--QLD-heading-space-md);
+    line-height: var(--QLD-heading-space-desktop-md);
   }
   .qld__body .qld__default-lg.qld__heading-space {
-    line-height: var(--QLD-heading-space-lg);
+    line-height: var(--QLD-heading-space-desktop-lg);
   }
   .qld__body .qld__default-xl.qld__heading-space {
-    line-height: var(--QLD-heading-space-xl);
+    line-height: var(--QLD-heading-space-desktop-xl);
   }
   .qld__body .qld__default-xxl.qld__heading-space {
-    line-height: var(--QLD-heading-space-xxl);
+    line-height: var(--QLD-heading-space-desktop-xxl);
   }
   .qld__body .qld__default-xxxl.qld__heading-space {
-    line-height: var(--QLD-heading-space-xxxl);
+    line-height: var(--QLD-heading-space-desktop-xxxl);
   }
 }
 .qld__border-radius--xs {

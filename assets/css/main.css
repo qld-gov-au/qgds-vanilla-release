@@ -67,7 +67,6 @@
   --QLD-heading-space-xl: 40px;
   --QLD-heading-space-xxl: 52px;
   --QLD-heading-space-xxxl: 60px;
-  --QLD-color-contained-layout__background: #eff4f9;
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -1055,9 +1054,6 @@ input.focusable[type=checkbox]:focus,
   overflow: visible;
   position: static;
   width: auto;
-}
-.clearfix {
-  *zoom: 1;
 }
 .clearfix::before,
 .clearfix::after {
@@ -3685,14 +3681,14 @@ form .qld__body--breadcrumb {
 }
 .qld__body small,
 .qld__footer small {
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
 }
 @media (min-width: 992px) {
   .qld__body small,
   .qld__footer small {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -3759,7 +3755,7 @@ form .qld__body--breadcrumb {
 .qld__footer sup {
   position: relative;
   vertical-align: baseline;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -3768,7 +3764,7 @@ form .qld__body--breadcrumb {
   .qld__body sup,
   .qld__footer sub,
   .qld__footer sup {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -3785,15 +3781,9 @@ form .qld__body--breadcrumb {
 .qld__body samp,
 .qld__footer kbd,
 .qld__footer samp {
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  line-height: 20px;
-  line-height: 1.25rem;
-  padding: 2px 4px;
-  padding: 0.125rem 0.25rem;
-  margin: 0px 2px;
-  margin: 0rem 0.125rem;
   font-family:
     "Roboto Mono",
     Consolas,
@@ -3805,13 +3795,19 @@ form .qld__body--breadcrumb {
   border-radius: 4px;
   background-color: var(--QLD-color-light__background--shade);
   color: var(--QLD-color-light__text);
+  line-height: 20px;
+  line-height: 1.25rem;
+  padding: 2px 4px;
+  padding: 0.125rem 0.25rem;
+  margin: 0px 2px;
+  margin: 0rem 0.125rem;
 }
 @media (min-width: 992px) {
   .qld__body kbd,
   .qld__body samp,
   .qld__footer kbd,
   .qld__footer samp {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -3830,7 +3826,7 @@ form .qld__body--breadcrumb {
     Menlo,
     Courier,
     monospace;
-  font-size: 12.8px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   background-color: #232323;
@@ -3839,7 +3835,7 @@ form .qld__body--breadcrumb {
 @media (min-width: 992px) {
   .qld__body code,
   .qld__footer code {
-    font-size: 12.8px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -3922,7 +3918,7 @@ form .qld__body--breadcrumb {
 .qld__body .qld__block-quote .qld__quote-source,
 .qld__footer blockquote .qld__quote-source,
 .qld__footer .qld__block-quote .qld__quote-source {
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   color: var(--QLD-color-light__text--lighter);
@@ -3933,7 +3929,7 @@ form .qld__body--breadcrumb {
   .qld__body .qld__block-quote .qld__quote-source,
   .qld__footer blockquote .qld__quote-source,
   .qld__footer .qld__block-quote .qld__quote-source {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -3954,7 +3950,7 @@ form .qld__body--breadcrumb {
 }
 .qld__body .qld__caption,
 .qld__footer .qld__caption {
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   font-weight: 400;
@@ -3963,7 +3959,7 @@ form .qld__body--breadcrumb {
 @media (min-width: 992px) {
   .qld__body .qld__caption,
   .qld__footer .qld__caption {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -4542,7 +4538,7 @@ form .qld__body--breadcrumb {
   background-color: var(--QLD-color-light__action--primary-hover);
   color: var(--QLD-color-light__link--on-action);
   border-color: var(--QLD-color-light__action--primary-hover);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
   text-decoration: underline;
   text-decoration-color: var(--QLD-color-light__link--on-action);
   text-underline-offset: var(--QLD-underline__offset);
@@ -4571,7 +4567,7 @@ form .qld__body--breadcrumb {
   background-color: var(--QLD-color-light__background--shade);
   border-color: var(--QLD-color-neutral--lightest);
   color: var(--QLD-color-light__heading);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
   text-decoration: none;
 }
 .qld__body .qld__btn:focus:active i,
@@ -4618,7 +4614,7 @@ form .qld__body--breadcrumb {
 .qld__widgets .sq-form-submit:focus {
   background-color: var(--QLD-color-light__action--primary-hover);
   border-color: var(--QLD-color-light__action--primary-hover);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 .qld__body .qld__btn:focus:focus,
 .qld__body a.qld__btn:focus:focus,
@@ -7982,7 +7978,7 @@ form .qld__body--breadcrumb {
 .qld__footer a.qld__btn.qld__btn--secondary:hover,
 .qld__footer a.qld__btn.qld__btn--secondary:visited:hover {
   border-color: var(--QLD-color-light__action--secondary-hover);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 .qld__body .qld__btn.qld__btn--secondary:hover i,
 .qld__body a.qld__btn.qld__btn--secondary:hover i,
@@ -8043,7 +8039,7 @@ form .qld__body--breadcrumb {
 .qld__footer a.qld__btn.qld__btn--secondary:focus,
 .qld__footer a.qld__btn.qld__btn--secondary:visited:focus {
   border-color: var(--QLD-color-light__action--secondary-hover);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 .qld__body .qld__btn.qld__btn--secondary:focus i,
 .qld__body a.qld__btn.qld__btn--secondary:focus i,
@@ -8893,7 +8889,7 @@ form .qld__body--breadcrumb {
 .qld__footer.qld__footer--dark-alt a.qld__btn.qld__btn--secondary:hover,
 .qld__footer.qld__footer--dark-alt a.qld__btn.qld__btn--secondary:visited:hover {
   border-color: var(--QLD-color-dark__action--secondary-hover);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 .qld__body.qld__body--dark .qld__btn.qld__btn--secondary:hover i,
 .qld__body.qld__body--dark a.qld__btn.qld__btn--secondary:hover i,
@@ -20918,7 +20914,7 @@ div.sq-form-question-error select:not(:focus) {
 .qld__card .qld__display-xs,
 .qld__banner .qld__display-xs,
 .qld__main-nav .qld__display-xs {
-  font-size: 12.8px;
+  font-size: 16px;
 }
 @media (min-width: 992px) {
   .qld__header .qld__display-xs,
@@ -20928,7 +20924,7 @@ div.sq-form-question-error select:not(:focus) {
   .qld__card .qld__display-xs,
   .qld__banner .qld__display-xs,
   .qld__main-nav .qld__display-xs {
-    font-size: 12.8px;
+    font-size: 16px;
   }
 }
 .qld__header *:not([type=hidden]) + .qld__display-xxxl,
@@ -25335,9 +25331,9 @@ i.qld__icon--trail {
   border: 1px solid var(--QLD-color-light__border);
   border-radius: 12px;
   box-shadow:
-    7px 6px 13px rgba(0, 0, 0, 0.02),
-    0px 2px 5px rgba(0, 0, 0, 0.1),
-    0px 13px 20px rgba(0, 0, 0, 0.1);
+    7px 6px 13px 0 rgba(0, 0, 0, 0.2),
+    0px 2px 5px 0 rgba(0, 0, 0, 0.1),
+    0px 13px 20px 0 rgba(0, 0, 0, 0.1);
   z-index: 101;
 }
 @media (min-width: 699px) {
@@ -26079,7 +26075,7 @@ table.qld__table--striped tbody tr:nth-last-child(odd) {
 }
 .qld__tag {
   display: inline-block;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   padding: 0 8px;
@@ -26097,7 +26093,7 @@ table.qld__table--striped tbody tr:nth-last-child(odd) {
 }
 @media (min-width: 992px) {
   .qld__tag {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -28279,7 +28275,7 @@ body a.qld__btn.qld__btn--floating.qld__btn--back-to-top:active::after {
   color: var(--QLD-color-light__link);
   display: inline-block;
   margin-top: 4px;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: -0.5px;
@@ -28308,7 +28304,7 @@ body a.qld__btn.qld__btn--floating.qld__btn--back-to-top:active::after {
 }
 @media (min-width: 992px) {
   .qld__tile-nav .qld__tile-nav__item .qld__tile-nav__link {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -28499,7 +28495,7 @@ body a.qld__btn.qld__btn--floating.qld__btn--back-to-top:active::after {
   justify-content: end;
   align-items: center;
   margin-left: auto;
-  font-size: 12.8px;
+  font-size: 16px;
 }
 @media (min-width: 699px) {
   .qld__search__sort {
@@ -28767,13 +28763,13 @@ body {
   margin: 0;
   padding: 0;
   vertical-align: text-bottom;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
 }
 @media (min-width: 992px) {
   .qld__breadcrumbs > .qld__link-list {
-    font-size: 12.8px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -29287,7 +29283,7 @@ body {
   line-height: 1.4;
 }
 .qld__card.qld__card__multi-action {
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
 }
 @media (min-width: 992px) {
   .qld__card.qld__card__multi-action {
@@ -29608,13 +29604,13 @@ body {
 .qld__card .qld__card__inner .qld__card__description {
   margin-top: 12px;
   margin-top: 0.75rem;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
 }
 @media (min-width: 699px) {
   .qld__card .qld__card__inner .qld__card__description {
-    font-size: 12.8px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -29733,14 +29729,14 @@ body {
   flex-direction: column;
   flex: 1 0 auto;
   position: relative;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   justify-content: end;
 }
 @media (min-width: 699px) {
   .qld__card .qld__card__footer {
-    font-size: 12.8px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -30564,7 +30560,7 @@ body {
   margin-top: 0rem;
 }
 .qld__card.qld__card__action {
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
 }
 .qld__card.qld__card__action:focus-within {
   outline: 3px solid var(--QLD-color-light__focus);
@@ -30579,9 +30575,9 @@ body {
   }
   .qld__card.qld__card__action:hover {
     box-shadow:
-      7px 6px 13px rgba(0, 0, 0, 0.02),
-      0px 2px 5px rgba(0, 0, 0, 0.1),
-      0px 13px 20px rgba(0, 0, 0, 0.1);
+      7px 6px 13px 0 rgba(0, 0, 0, 0.2),
+      0px 2px 5px 0 rgba(0, 0, 0, 0.1),
+      0px 13px 20px 0 rgba(0, 0, 0, 0.1);
   }
 }
 .qld__card.qld__card__action.qld__card--image:hover .qld__responsive-media-img--bg::before {
@@ -30935,7 +30931,7 @@ body {
   border-radius: 4px;
   display: flex;
   width: 100%;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
 }
 .qld__body .qld__code.singleline code {
   border-radius: 4px 0 0 4px;
@@ -30960,14 +30956,14 @@ body {
   display: inline-grid;
   background-color: var(--QLD-color-light__background);
   border-radius: 4px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
   margin-top: 24px;
   margin-top: 1.5rem;
 }
 .qld__body .qld__code.multiline:not(.with-preview) .qld__code-toggle-button,
 .qld__body .qld__code.multiline:not(.with-preview) .qld__code-header,
 .qld__body .qld__code.multiline:not(.with-preview) code {
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
 }
 .qld__body .qld__code.multiline code {
   border-radius: 0 0 4px 4px;
@@ -31065,7 +31061,7 @@ body {
   z-index: 2;
   padding: 4px 24px;
   padding: 0.25rem 1.5rem;
-  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.1), 0px 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 .qld__code-tooltip:before {
   content: "";
@@ -32546,7 +32542,7 @@ table.dataTable.no-footer {
   color: var(--QLD-color-status__error);
 }
 .qld__footer {
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   padding-bottom: 40px;
@@ -32557,7 +32553,7 @@ table.dataTable.no-footer {
 }
 @media (min-width: 992px) {
   .qld__footer {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -33487,16 +33483,10 @@ table.dataTable.no-footer {
   background-color: var(--QLD-color-dark__background);
   z-index: 600;
 }
-@media (min-width: 992px) {
-  .qld__header .qld__header__pre-header-url {
-    font-size: 14px;
-    line-height: 1;
-  }
-}
 .qld__header .qld__header__pre-header {
   color: var(--QLD-color-light__text);
   background-color: var(--QLD-color-light__background);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 1;
   padding-top: 12px;
@@ -33565,11 +33555,14 @@ table.dataTable.no-footer {
 .qld__header .qld__header__pre-header-url {
   display: none;
   color: var(--QLD-color-light__link);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 @media (min-width: 992px) {
   .qld__header .qld__header__pre-header-url {
     display: inline-block;
-    font-size: 12.8px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -33601,7 +33594,7 @@ table.dataTable.no-footer {
   }
 }
 .qld__header .qld__header__pre-header .qld__header__cta-wrapper .qld__header__cta-link {
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   color: var(--QLD-color-light__link);
@@ -33611,7 +33604,7 @@ table.dataTable.no-footer {
 }
 @media (min-width: 992px) {
   .qld__header .qld__header__pre-header .qld__header__cta-wrapper .qld__header__cta-link {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -33654,6 +33647,12 @@ table.dataTable.no-footer {
   display: flex;
   flex-direction: row;
   justify-content: end;
+  height: 52px;
+}
+@media (min-width: 699px) {
+  .qld__header .qld__header__pre-header .qld__header__main-nav-controls {
+    height: 72px;
+  }
 }
 @media (min-width: 992px) {
   .qld__header .qld__header__pre-header .qld__header__main-nav-controls {
@@ -33665,7 +33664,7 @@ table.dataTable.no-footer {
   flex-direction: column;
   padding: 8px 16px;
   padding: 0.5rem 1rem;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   border: 0;
@@ -33703,7 +33702,7 @@ table.dataTable.no-footer {
 }
 @media (min-width: 699px) {
   .qld__header .qld__header__pre-header .qld__header__toggle-main-nav .qld__main-nav__toggle-text {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -33970,13 +33969,13 @@ table.dataTable.no-footer {
 .qld__header .qld__header__main .qld__header__site-name .qld__header__subline {
   max-width: 80ch;
   color: var(--QLD-color-light__text--lighter);
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
 }
 @media (min-width: 699px) {
   .qld__header .qld__header__main .qld__header__site-name .qld__header__subline {
-    font-size: 12.8px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -34090,7 +34089,7 @@ table.dataTable.no-footer {
   }
 }
 .qld__header .qld__header__search .qld__header__search-link {
-  font-size: 12.8px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   float: right;
@@ -34187,7 +34186,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   margin: 1.938rem 0 1.938rem 0;
 }
 .qld__inpage-nav-links {
-  font-size: 12.8px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   padding-left: 24px;
@@ -34296,7 +34295,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   padding-right: 8rem;
 }
 .qld__inpage-nav-section-link {
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   top: 4px;
@@ -34311,7 +34310,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   }
 }
 .qld__side-nav {
-  font-size: 12.8px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   font-family:
@@ -34333,6 +34332,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 @media (min-width: 992px) {
   .qld__side-nav {
+    border-radius: 16px;
     margin-bottom: 0px;
     margin-bottom: 0rem;
     border: 0;
@@ -34348,7 +34348,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 .qld__side-nav .active > span {
   padding: 16px;
   padding: 1rem;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   color: var(--QLD-color-light__text);
@@ -34357,7 +34357,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 @media (min-width: 992px) {
   .qld__side-nav a,
   .qld__side-nav .active > span {
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -34442,7 +34442,6 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 .qld__side-nav .qld__accordion__title {
   font-size: 19.2px;
-  font-weight: 600;
   line-height: 1.25;
   color: var(--QLD-color-light__link);
   background-color: inherit;
@@ -35062,7 +35061,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
     margin: 0 16px;
     margin: 0 1rem;
     align-self: center;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
     border: none;
     cursor: pointer;
     border-radius: 50%;
@@ -35076,7 +35075,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
     border: 0;
   }
   .qld__left-nav ul li .qld__left-nav__item-toggle:hover {
-    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.1), 0px 1px 3px 0 rgba(0, 0, 0, 0.2);
   }
   .qld__left-nav ul li .qld__left-nav__item-toggle:after {
     content: " ";
@@ -35736,7 +35735,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   background-color: var(--QLD-color-light__background);
   color: var(--QLD-color-light__text);
   align-items: center;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 @media (min-width: 992px) {
@@ -35748,7 +35747,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   margin-left: auto;
 }
 .qld__main-nav .qld__main-nav__menu-heading {
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   margin: 0px 16px;
@@ -35758,7 +35757,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 @media (min-width: 699px) {
   .qld__main-nav .qld__main-nav__menu-heading {
-    font-size: 12.8px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
     line-height: 72px;
@@ -35778,7 +35777,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   flex-direction: column;
   padding: 8px 16px 4px 16px;
   padding: 0.5rem 1rem 0.25rem 1rem;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   border: 0;
@@ -35819,7 +35818,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   .qld__main-nav__toggle .qld__main-nav__toggle-text {
     margin-top: 10px;
     margin-top: 0.625rem;
-    font-size: 10.24px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -36048,7 +36047,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   margin: 0 10px;
   margin: 0 0.625rem;
   align-self: center;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
   border: none;
   cursor: pointer;
   border-radius: 50%;
@@ -36099,7 +36098,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   }
 }
 .qld__main-nav.qld__main-nav--mega .qld__main-nav__item-toggle:hover {
-  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.1), 0px 1px 3px 0 rgba(0, 0, 0, 0.2);
   color: var(--QLD-color-light__link);
 }
 @media (min-width: 992px) {
@@ -36235,11 +36234,10 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
     position: absolute;
     left: -16px;
     right: -16px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 2px 2px rgba(0, 0, 0, 0.05);
     border-radius: 12px;
     margin-top: 8px;
     margin-top: 0.5rem;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
     border-bottom-left-radius: 12px;
     border-bottom-left-radius: 0.75rem;
     border-bottom-right-radius: 12px;
@@ -36413,7 +36411,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   width: 100%;
   padding: 14px 24px 15px 24px;
   padding: 0.875rem 1.5rem 0.9375rem 1.5rem;
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   border-bottom: solid 1px var(--QLD-color-neutral--lighter);
@@ -36464,7 +36462,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 }
 .qld__main-nav.qld__main-nav--mega .qld__main-nav__menu-sub .qld__link-columns li .qld__main-nav__item-desc {
   color: var(--QLD-color-light__text--lighter);
-  font-size: 10.24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   font-weight: normal;
@@ -36747,7 +36745,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
   max-width: 360px;
   max-width: 22.5rem;
   margin-top: 4px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   z-index: 9999;
 }
@@ -36996,7 +36994,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 .qld__page-alerts {
   padding: 16px;
   padding: 1rem;
-  font-size: 12.8px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   position: relative;
@@ -37203,7 +37201,7 @@ hr.qld__horizontal-rule.qld__horizontal-rule--lg {
 .qld__search-pagination ul li.active a:hover {
   background-color: var(--QLD-color-light__action--primary-hover);
   box-shadow: inset 0 0 0 2px var(--QLD-color-light__action--primary-hover);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 .qld__search-pagination ul li.active a:active,
 .qld__search-pagination ul li.active a:focus {

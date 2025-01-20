@@ -1508,7 +1508,10 @@
           inpage_navigation_default2.init();
         }
       } catch (error) {
-        console.error(`InpageNavigation error: ${error.message}`);
+        console.error(`InpageNavigation error in function 'init': ${error.message}`, {
+          functionName: "init",
+          errorDetails: error
+        });
       }
     });
     const props = {

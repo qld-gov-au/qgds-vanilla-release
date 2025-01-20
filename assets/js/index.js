@@ -1188,6 +1188,7 @@
   // src/components/_example/index.js
   function Example({ data, template = example_default }) {
     example_default2.init();
+    console.log("Example init");
     const props = {
       data,
       template,

@@ -21108,6 +21108,106 @@
     });
   }
 
+  // src/components/theme_color_scheme/js/global.js
+  function global_default22(QLD) {
+    "use strict";
+    var themeColorScheme = {};
+    const SCROLL_AMOUNT = 500;
+    themeColorScheme.init = function() {
+      const tabComponents = document.querySelectorAll(".qld__theme-color-scheme-container");
+      tabComponents.forEach((tabComponent) => {
+        const tabHeadings = tabComponent.querySelectorAll(".qld__theme-color-scheme-button");
+        if (tabHeadings.length) {
+          tabHeadings[0].setAttribute("tabindex", "0");
+          tabHeadings[0].setAttribute("aria-selected", "true");
+          const tabContentId = tabHeadings[0].getAttribute("data-theme-color-scheme");
+          tabHeadings[0].classList.add("active");
+          const tabContent = tabComponent.querySelector(
+            `.qld__theme-color-scheme-content[data-theme-color-scheme="${tabContentId}"]`
+          );
+          if (tabContent.length) {
+            tabContent.setAttribute("tabindex", "0");
+            tabContent.setAttribute("aria-hidden", "false");
+            tabContent.classList.add("active");
+          }
+        }
+        tabHeadings.forEach((tabHeading) => {
+          tabHeading.addEventListener("click", (event2) => {
+            const tabHeadings2 = tabComponent.querySelectorAll(".qld__theme-color-scheme-button");
+            tabHeadings2.forEach((tabHeading2) => {
+              tabHeading2.classList.remove("active");
+              tabHeading2.setAttribute("aria-selected", "false");
+              tabHeading2.setAttribute("tabindex", "-1");
+            });
+            const tabContents = tabComponent.querySelectorAll(".qld__theme-color-scheme-content");
+            tabContents.forEach((tabContent2) => {
+              tabContent2.classList.remove("active");
+              tabContent2.setAttribute("aria-hidden", "true");
+              tabContent2.setAttribute("tabindex", "-1");
+            });
+            event2.currentTarget.classList.add("active");
+            event2.currentTarget.setAttribute("aria-selected", "true");
+            event2.currentTarget.setAttribute("tabindex", "0");
+            const tabContentId = event2.currentTarget.getAttribute("data-theme-color-scheme");
+            const tabContent = tabComponent.querySelector(
+              `.qld__theme-color-scheme-content[data-theme-color-scheme="${tabContentId}"]`
+            );
+            tabContent.classList.add("active");
+            tabContent.setAttribute("aria-hidden", "false");
+            tabContent.setAttribute("tabindex", "0");
+          });
+        });
+        let currentTabIndex = 0;
+        tabHeadings.forEach((tabHeading, index) => {
+          tabHeading.addEventListener("keydown", (event2) => {
+            if (event2.key === "Enter" || event2.key === "Space") {
+              event2.preventDefault();
+              event2.currentTarget.click();
+            }
+            if (event2.key === "ArrowLeft") {
+              if (currentTabIndex > 0) {
+                event2.preventDefault();
+                const previousTabHeading = tabHeadings[index - 1];
+                if (previousTabHeading) {
+                  currentTabIndex = index - 1;
+                  previousTabHeading.focus();
+                }
+              }
+            }
+            if (event2.key === "ArrowRight") {
+              if (currentTabIndex < tabHeadings.length - 1) {
+                event2.preventDefault();
+                const nextTabHeading = tabHeadings[index + 1];
+                if (nextTabHeading) {
+                  currentTabIndex = index + 1;
+                  nextTabHeading.focus();
+                }
+              }
+            }
+          });
+          tabHeading.addEventListener("focus", (event2) => {
+            const tabContentId = event2.currentTarget.getAttribute("data-theme-color-scheme");
+            const tabContent = tabComponent.querySelector(
+              `.qld__theme-color-scheme-content[data-theme-color-scheme="${tabContentId}"]`
+            );
+            tabContent.classList.add("focused");
+          });
+          tabHeading.addEventListener("blur", (event2) => {
+            const tabContentId = event2.currentTarget.getAttribute("data-theme-color-scheme");
+            const tabContent = tabComponent.querySelector(
+              `.qld__theme-color-scheme-content[data-theme-color-scheme="${tabContentId}"]`
+            );
+            tabContent.classList.remove("focused");
+          });
+        });
+      });
+    };
+    QLD.themeColorScheme = themeColorScheme;
+    window.addEventListener("DOMContentLoaded", function() {
+      QLD.themeColorScheme.init();
+    });
+  }
+
   // src/js/globals.rollup.js
   function init(QLD) {
     global_default(QLD);
@@ -21131,6 +21231,7 @@
     global_default19(QLD);
     global_default20(QLD);
     global_default21(QLD);
+    global_default22(QLD);
   }
 
   // src/js/main.js

@@ -1198,56 +1198,6 @@
     return new Component("Example", props);
   }
 
-  // src/components/theme_switcher/theme_switcher.hbs?raw
-  var theme_switcher_default = '<div class="qld__theme_switcher" data-component="qgds-theme_switcher">\n  <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">\n    <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">\n      <mask class="moon" id="moon-mask">\n        <rect x="0" y="0" width="100%" height="100%" fill="white" />\n        <circle cx="24" cy="10" r="6" fill="black" />\n      </mask>\n      <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />\n      <g class="sun-beams" stroke="currentColor">\n        <line x1="12" y1="1" x2="12" y2="3" />\n        <line x1="12" y1="21" x2="12" y2="23" />\n        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />\n        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />\n        <line x1="1" y1="12" x2="3" y2="12" />\n        <line x1="21" y1="12" x2="23" y2="12" />\n        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />\n        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />\n      </g>\n    </svg>\n  </button>\n</div>\n';
-
-  // src/components/theme_switcher/theme_switcher.js
-  var theme_switcher_default2 = {
-    init() {
-      document.addEventListener("DOMContentLoaded", () => {
-        this.handleClick("#theme-toggle");
-      });
-      console.log("#theme-toggle");
-    },
-    /**
-     * Example: Attach a click event handler on the supplied element.
-     * @param {HTMLElement} element - A DOM element to handle.
-     */
-    handleClick(scope) {
-      console.log("here");
-      let nodes = document.querySelectorAll(scope);
-      nodes.forEach((node) => {
-        node.addEventListener("click", (event) => {
-          console.log(`A link was clicked within the Example component.`);
-        });
-      });
-    }
-  };
-
-  // src/components/theme_switcher/version.json
-  var version_default2 = {
-    component: {
-      name: "Theme Switcher",
-      description: "Theme switcher that allows users to change the theme of the website between light, dark and OS-default.",
-      version: "0.1",
-      status: "Draft",
-      type: "design"
-    }
-  };
-
-  // src/components/theme_switcher/index.js
-  function ThemeSwitcher({ data, template = theme_switcher_default }) {
-    theme_switcher_default2.init();
-    console.log("ThemeSwitcher init");
-    const props = {
-      data,
-      template,
-      required: ["title", "description"],
-      meta: version_default2 || {}
-    };
-    return new Component("ThemeSwitcher", props);
-  }
-
   // src/components/breadcrumbs/breadcrumbs.hbs?raw
   var breadcrumbs_default = `{{#ifCond current.data.metadata.displayBreadcrumbs.value '==' 'true'}}
 <nav class="qld__breadcrumbs" aria-label="breadcrumb">
@@ -1427,7 +1377,7 @@
   var BreadcrumbsLogic = _BreadcrumbsLogic;
 
   // src/components/breadcrumbs/version.json
-  var version_default3 = {
+  var version_default2 = {
     component: {
       name: "Breadcrumbs",
       description: "",
@@ -1449,7 +1399,7 @@
     const props = {
       data,
       template,
-      meta: version_default3 || {}
+      meta: version_default2 || {}
     };
     return new Component("Breadcrumbs", props);
   }
@@ -1464,7 +1414,7 @@
   };
 
   // src/components/back_to_top/version.json
-  var version_default4 = {
+  var version_default3 = {
     component: {
       name: "Back to Top",
       description: "Back To Top component is a button that appears when the user scrolls down the page. It allows the user to quickly scroll to the top of the page.",
@@ -1480,7 +1430,7 @@
     const props = {
       data,
       template,
-      meta: version_default4 || {}
+      meta: version_default3 || {}
     };
     return new Component("BackToTop", props);
   }
@@ -1489,8 +1439,7 @@
   var QGDS = {
     Example,
     Breadcrumbs: Breadcrumbs2,
-    BackToTop,
-    ThemeSwitcher
+    BackToTop
   };
 })();
 //# sourceMappingURL=index.js.map

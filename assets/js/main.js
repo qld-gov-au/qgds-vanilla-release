@@ -21114,11 +21114,45 @@
     var themeColorScheme = {};
     themeColorScheme.init = function() {
       console.log("#themeColorScheme");
-      var themeColorSchemeChange = document.querySelector(".qld__theme_color_scheme button");
-      themeColorSchemeChange.addEventListener("click", function() {
-        console.log("clicked");
+      var themeColorSchemeChangeButtons = document.querySelectorAll(".qld__theme_color_scheme button");
+      themeColorSchemeChangeButtons.forEach((button) => {
+        button.addEventListener("click", handleThemeColorSchemeButtonClick);
       });
     };
+    function handleThemeColorSchemeButtonClick(e) {
+      theme.value = theme.value === "light" ? "dark" : "light";
+      console.log("theme.value", theme.value);
+      setPreference();
+    }
+    const storageKey = "theme-preference";
+    const getColorPreference = () => {
+      if (localStorage.getItem(storageKey)) return localStorage.getItem(storageKey);
+      else return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    };
+    const setPreference = () => {
+      localStorage.setItem(storageKey, theme.value);
+      reflectPreference();
+    };
+    const reflectPreference = () => {
+      var _a;
+      document.firstElementChild.setAttribute("data-theme", theme.value);
+      (_a = document.querySelector("#theme-toggle")) == null ? void 0 : _a.setAttribute("aria-label", theme.value);
+      const elem = document.querySelector("body");
+      elem.classList.remove("light", "dark");
+      elem.classList.add(theme.value);
+    };
+    const theme = {
+      value: getColorPreference()
+    };
+    reflectPreference();
+    window.onload = () => {
+      reflectPreference();
+      document.querySelector("#theme-toggle").addEventListener("click", onClick);
+    };
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches: isDark }) => {
+      theme.value = isDark ? "dark" : "light";
+      setPreference();
+    });
     QLD.themeColorScheme = themeColorScheme;
     window.addEventListener("DOMContentLoaded", function() {
       QLD.themeColorScheme.init();

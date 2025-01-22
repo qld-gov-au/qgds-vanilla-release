@@ -10230,7 +10230,10 @@
       if (element.classList) {
         element.classList.remove(className);
       } else {
-        element.className = element.className.replace(new RegExp("(^|\\b)" + className.split(" ").join("|") + "(\\b|$)", "gi"), " ");
+        element.className = element.className.replace(
+          new RegExp("(^|\\b)" + className.split(" ").join("|") + "(\\b|$)", "gi"),
+          " "
+        );
       }
     }
     function addClass(element, className) {
@@ -10334,19 +10337,11 @@
               }
               if (state === "open" || state === "opening") {
                 if (this.element.classList.contains("qld__main-nav__menu-sub") || this.element.classList.contains("qld__overflow_menu")) {
-                  document.addEventListener(
-                    "click",
-                    toggleNavOnDocumentClick,
-                    { signal: controller.signal }
-                  );
+                  document.addEventListener("click", toggleNavOnDocumentClick, { signal: controller.signal });
                 }
               } else {
                 if (this.element.classList.contains("qld__main-nav__menu-sub") || this.element.classList.contains("qld__overflow_menu")) {
-                  document.removeEventListener(
-                    "click",
-                    toggleNavOnDocumentClick,
-                    { signal: controller.signal }
-                  );
+                  document.removeEventListener("click", toggleNavOnDocumentClick, { signal: controller.signal });
                   controller.abort();
                 }
               }
@@ -20830,7 +20825,7 @@
        *
        * @memberof module:megaMenu
        */
-      "init": function() {
+      init: function() {
         var topNavItems = document.querySelectorAll(".qld__main-nav__item-title > a");
         topNavItems.forEach(function(item) {
           item.addEventListener("keydown", handleTopNavKeydown);
@@ -21153,6 +21148,65 @@
       theme.value = isDark ? "dark" : "light";
       setPreference();
     });
+    function handleTopNavKeydown(e) {
+      var key = e.keyCode;
+      if (key === 27 || key == 38) {
+        toggleMenu(e);
+      }
+    }
+    function handleTopNavFocusout(e) {
+      var link = e.target;
+      var navItem = link.closest(".qld__main-nav__item");
+      var expanded = navItem.classList.contains("expanded") ? true : false;
+      var menu = navItem.querySelector(".qld__main-nav__menu-sub");
+      setTimeout(function() {
+        var menuHasFocus = menu.contains(document.activeElement) ? true : false;
+        if (!menuHasFocus && expanded) {
+          toggleMenu(e);
+        }
+      }, 20);
+    }
+    function toggleMenu(e) {
+      var link = e.target;
+      var navItem = link.closest(".qld__main-nav__item");
+      var expanded = navItem.classList.contains("expanded") ? true : false;
+      if (!expanded) {
+        navItem.classList.add("expanded");
+        setTimeout(function() {
+          document.addEventListener("click", handleBackgroundClick);
+        }, 30);
+      } else {
+        navItem.classList.remove("expanded");
+        document.removeEventListener("click", handleBackgroundClick);
+      }
+    }
+    function handleBackgroundClick(e) {
+      var target = e.target;
+      var nav = document.querySelector(".qld__main-nav__menu-inner");
+      if (!nav.contains(target)) {
+        document.querySelectorAll(".qld__main-nav__item.expanded").forEach(function(item) {
+          item.classList.remove("expanded");
+        });
+        document.removeEventListener("click", handleBackgroundClick);
+      }
+    }
+    function handleMenuKeypress(e) {
+      var link = e.target;
+      var key = e.keyCode;
+      var navItem = link.closest(".qld__main-nav__item");
+      var menu = link.closest(".qld__main-nav__menu-sub");
+      if (key === 27 || key == 38) {
+        navItem.querySelector(".qld__main-nav__item-title > a").focus();
+      }
+      if (key === 9 && !e.shiftKey) {
+        setTimeout(function() {
+          var menuHasFocus = menu.contains(document.activeElement) ? true : false;
+          if (!menuHasFocus) {
+            toggleMenu(e);
+          }
+        }, 20);
+      }
+    }
     QLD.themeColorScheme = themeColorScheme;
     window.addEventListener("DOMContentLoaded", function() {
       QLD.themeColorScheme.init();
